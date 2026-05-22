@@ -30,6 +30,7 @@ ALLOWED_HOSTS = ["localhost", "127.0.0.1", "https://bitstorm-saas-repo.onrender.
 # Application definition
 
 INSTALLED_APPS = [
+    "authentication",  # this has to be here because it is a mini app inside of Django and we need to define here
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
