@@ -46,6 +46,10 @@ class User(AbstractUser):
         choices=Role.choices,
         default=Role.CUSTOMER,
     )
+    totp_confirmed = models.BooleanField(default=False)
+    totp_secret = models.TextField(blank=True, default="")
+    sms_2fa_enabled = models.BooleanField(default=False)
+    cnp_lookup_hash = models.CharField(max_length=64, blank=True, default="")
     languages = models.ManyToManyField(
         "core.Language",
         blank=True,
