@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 
 import os
 import dotenv
+from datetime import timedelta
 
 dotenv.load_dotenv()
 
@@ -31,6 +32,9 @@ ALLOWED_HOSTS = ["localhost", "127.0.0.1", "bitstorm-saas-repo.onrender.com"]
 
 INSTALLED_APPS = [
     "authentication",  # this has to be here because it is a mini app inside of Django and we need to define here
+    "rest_framework",  # this is the Django DRF that we will use as the API layer
+    "corsheaders",  # this is required so the frontend and django backend can communicate
+    "rest_framework_simplejwt.token_blacklist",  # for refresh token expiration
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -41,6 +45,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "corsheaders.middleware.CorsMiddleware",  # middleware here is required so Django can wire the apps together
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -51,6 +56,32 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "config.urls"
 
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",  # TODO: change this once we know frontend port and once we deploy frontend on Render
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:5173",  # this is for cookie storage and recognition by django backend
+]
+
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    ),
+    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.AllowAny",),
+}
+
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=15),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=30),
+    "ROTATE_REFRESH_TOKENS": True,
+    "BLACKLIST_AFTER_ROTATION": True,
+    "AUTH_HEADER_TYPES": ("Bearer",),
+}
+
+
+# we are going to use a separate frontend so we don't need to use templates here
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
