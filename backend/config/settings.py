@@ -11,10 +11,14 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
 import os
+from pathlib import Path
+
 import dotenv
 from datetime import timedelta
 
 dotenv.load_dotenv()
+
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
