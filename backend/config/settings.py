@@ -64,14 +64,17 @@ MIDDLEWARE = [
 ROOT_URLCONF = "config.urls"
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",  # TODO: change this once we know frontend port and once we deploy frontend on Render
+    "http://localhost:5173",
+    "https://bitstorm-saas-repo-1.onrender.com",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:5173",  # this is for cookie storage and recognition by django backend
+    "https://bitstorm-saas-repo-1.onrender.com",
 ]
 
 CORS_ALLOW_CREDENTIALS = True
+
 REST_FRAMEWORK = {
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
     "DEFAULT_AUTHENTICATION_CLASSES": (
