@@ -11,13 +11,18 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SignUpRouteImport } from './routes/sign-up'
 import { Route as ProfileRouteImport } from './routes/profile'
-import { Route as MedicationsRouteImport } from './routes/medications'
+import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as LoginRouteImport } from './routes/login'
-import { Route as HowIFeelRouteImport } from './routes/how-i-feel'
-import { Route as EmergencyRouteImport } from './routes/emergency'
-import { Route as CaregiverRouteImport } from './routes/caregiver'
-import { Route as CalendarRouteImport } from './routes/calendar'
+import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ProviderIndexRouteImport } from './routes/provider/index'
+import { Route as BookingsIndexRouteImport } from './routes/bookings/index'
+import { Route as ProvidersIdRouteImport } from './routes/providers/$id'
+import { Route as ProviderServicesRouteImport } from './routes/provider/services'
+import { Route as ProviderScheduleRouteImport } from './routes/provider/schedule'
+import { Route as ProviderOnboardingRouteImport } from './routes/provider/onboarding'
+import { Route as ProviderBookingsRouteImport } from './routes/provider/bookings'
+import { Route as BookingsNewRouteImport } from './routes/bookings/new'
 
 const SignUpRoute = SignUpRouteImport.update({
   id: '/sign-up',
@@ -29,9 +34,9 @@ const ProfileRoute = ProfileRouteImport.update({
   path: '/profile',
   getParentRoute: () => rootRouteImport,
 } as any)
-const MedicationsRoute = MedicationsRouteImport.update({
-  id: '/medications',
-  path: '/medications',
+const OnboardingRoute = OnboardingRouteImport.update({
+  id: '/onboarding',
+  path: '/onboarding',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LoginRoute = LoginRouteImport.update({
@@ -39,24 +44,9 @@ const LoginRoute = LoginRouteImport.update({
   path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
-const HowIFeelRoute = HowIFeelRouteImport.update({
-  id: '/how-i-feel',
-  path: '/how-i-feel',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const EmergencyRoute = EmergencyRouteImport.update({
-  id: '/emergency',
-  path: '/emergency',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CaregiverRoute = CaregiverRouteImport.update({
-  id: '/caregiver',
-  path: '/caregiver',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CalendarRoute = CalendarRouteImport.update({
-  id: '/calendar',
-  path: '/calendar',
+const ForgotPasswordRoute = ForgotPasswordRouteImport.update({
+  id: '/forgot-password',
+  path: '/forgot-password',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -64,87 +54,162 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProviderIndexRoute = ProviderIndexRouteImport.update({
+  id: '/provider/',
+  path: '/provider/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BookingsIndexRoute = BookingsIndexRouteImport.update({
+  id: '/bookings/',
+  path: '/bookings/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProvidersIdRoute = ProvidersIdRouteImport.update({
+  id: '/providers/$id',
+  path: '/providers/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProviderServicesRoute = ProviderServicesRouteImport.update({
+  id: '/provider/services',
+  path: '/provider/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProviderScheduleRoute = ProviderScheduleRouteImport.update({
+  id: '/provider/schedule',
+  path: '/provider/schedule',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProviderOnboardingRoute = ProviderOnboardingRouteImport.update({
+  id: '/provider/onboarding',
+  path: '/provider/onboarding',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProviderBookingsRoute = ProviderBookingsRouteImport.update({
+  id: '/provider/bookings',
+  path: '/provider/bookings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BookingsNewRoute = BookingsNewRouteImport.update({
+  id: '/bookings/new',
+  path: '/bookings/new',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/calendar': typeof CalendarRoute
-  '/caregiver': typeof CaregiverRoute
-  '/emergency': typeof EmergencyRoute
-  '/how-i-feel': typeof HowIFeelRoute
+  '/forgot-password': typeof ForgotPasswordRoute
   '/login': typeof LoginRoute
-  '/medications': typeof MedicationsRoute
+  '/onboarding': typeof OnboardingRoute
   '/profile': typeof ProfileRoute
   '/sign-up': typeof SignUpRoute
+  '/bookings/new': typeof BookingsNewRoute
+  '/provider/bookings': typeof ProviderBookingsRoute
+  '/provider/onboarding': typeof ProviderOnboardingRoute
+  '/provider/schedule': typeof ProviderScheduleRoute
+  '/provider/services': typeof ProviderServicesRoute
+  '/providers/$id': typeof ProvidersIdRoute
+  '/bookings/': typeof BookingsIndexRoute
+  '/provider/': typeof ProviderIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/calendar': typeof CalendarRoute
-  '/caregiver': typeof CaregiverRoute
-  '/emergency': typeof EmergencyRoute
-  '/how-i-feel': typeof HowIFeelRoute
+  '/forgot-password': typeof ForgotPasswordRoute
   '/login': typeof LoginRoute
-  '/medications': typeof MedicationsRoute
+  '/onboarding': typeof OnboardingRoute
   '/profile': typeof ProfileRoute
   '/sign-up': typeof SignUpRoute
+  '/bookings/new': typeof BookingsNewRoute
+  '/provider/bookings': typeof ProviderBookingsRoute
+  '/provider/onboarding': typeof ProviderOnboardingRoute
+  '/provider/schedule': typeof ProviderScheduleRoute
+  '/provider/services': typeof ProviderServicesRoute
+  '/providers/$id': typeof ProvidersIdRoute
+  '/bookings': typeof BookingsIndexRoute
+  '/provider': typeof ProviderIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/calendar': typeof CalendarRoute
-  '/caregiver': typeof CaregiverRoute
-  '/emergency': typeof EmergencyRoute
-  '/how-i-feel': typeof HowIFeelRoute
+  '/forgot-password': typeof ForgotPasswordRoute
   '/login': typeof LoginRoute
-  '/medications': typeof MedicationsRoute
+  '/onboarding': typeof OnboardingRoute
   '/profile': typeof ProfileRoute
   '/sign-up': typeof SignUpRoute
+  '/bookings/new': typeof BookingsNewRoute
+  '/provider/bookings': typeof ProviderBookingsRoute
+  '/provider/onboarding': typeof ProviderOnboardingRoute
+  '/provider/schedule': typeof ProviderScheduleRoute
+  '/provider/services': typeof ProviderServicesRoute
+  '/providers/$id': typeof ProvidersIdRoute
+  '/bookings/': typeof BookingsIndexRoute
+  '/provider/': typeof ProviderIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/calendar'
-    | '/caregiver'
-    | '/emergency'
-    | '/how-i-feel'
+    | '/forgot-password'
     | '/login'
-    | '/medications'
+    | '/onboarding'
     | '/profile'
     | '/sign-up'
+    | '/bookings/new'
+    | '/provider/bookings'
+    | '/provider/onboarding'
+    | '/provider/schedule'
+    | '/provider/services'
+    | '/providers/$id'
+    | '/bookings/'
+    | '/provider/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/calendar'
-    | '/caregiver'
-    | '/emergency'
-    | '/how-i-feel'
+    | '/forgot-password'
     | '/login'
-    | '/medications'
+    | '/onboarding'
     | '/profile'
     | '/sign-up'
+    | '/bookings/new'
+    | '/provider/bookings'
+    | '/provider/onboarding'
+    | '/provider/schedule'
+    | '/provider/services'
+    | '/providers/$id'
+    | '/bookings'
+    | '/provider'
   id:
     | '__root__'
     | '/'
-    | '/calendar'
-    | '/caregiver'
-    | '/emergency'
-    | '/how-i-feel'
+    | '/forgot-password'
     | '/login'
-    | '/medications'
+    | '/onboarding'
     | '/profile'
     | '/sign-up'
+    | '/bookings/new'
+    | '/provider/bookings'
+    | '/provider/onboarding'
+    | '/provider/schedule'
+    | '/provider/services'
+    | '/providers/$id'
+    | '/bookings/'
+    | '/provider/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  CalendarRoute: typeof CalendarRoute
-  CaregiverRoute: typeof CaregiverRoute
-  EmergencyRoute: typeof EmergencyRoute
-  HowIFeelRoute: typeof HowIFeelRoute
+  ForgotPasswordRoute: typeof ForgotPasswordRoute
   LoginRoute: typeof LoginRoute
-  MedicationsRoute: typeof MedicationsRoute
+  OnboardingRoute: typeof OnboardingRoute
   ProfileRoute: typeof ProfileRoute
   SignUpRoute: typeof SignUpRoute
+  BookingsNewRoute: typeof BookingsNewRoute
+  ProviderBookingsRoute: typeof ProviderBookingsRoute
+  ProviderOnboardingRoute: typeof ProviderOnboardingRoute
+  ProviderScheduleRoute: typeof ProviderScheduleRoute
+  ProviderServicesRoute: typeof ProviderServicesRoute
+  ProvidersIdRoute: typeof ProvidersIdRoute
+  BookingsIndexRoute: typeof BookingsIndexRoute
+  ProviderIndexRoute: typeof ProviderIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -163,11 +228,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProfileRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/medications': {
-      id: '/medications'
-      path: '/medications'
-      fullPath: '/medications'
-      preLoaderRoute: typeof MedicationsRouteImport
+    '/onboarding': {
+      id: '/onboarding'
+      path: '/onboarding'
+      fullPath: '/onboarding'
+      preLoaderRoute: typeof OnboardingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/login': {
@@ -177,32 +242,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/how-i-feel': {
-      id: '/how-i-feel'
-      path: '/how-i-feel'
-      fullPath: '/how-i-feel'
-      preLoaderRoute: typeof HowIFeelRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/emergency': {
-      id: '/emergency'
-      path: '/emergency'
-      fullPath: '/emergency'
-      preLoaderRoute: typeof EmergencyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/caregiver': {
-      id: '/caregiver'
-      path: '/caregiver'
-      fullPath: '/caregiver'
-      preLoaderRoute: typeof CaregiverRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/calendar': {
-      id: '/calendar'
-      path: '/calendar'
-      fullPath: '/calendar'
-      preLoaderRoute: typeof CalendarRouteImport
+    '/forgot-password': {
+      id: '/forgot-password'
+      path: '/forgot-password'
+      fullPath: '/forgot-password'
+      preLoaderRoute: typeof ForgotPasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -212,19 +256,80 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/provider/': {
+      id: '/provider/'
+      path: '/provider'
+      fullPath: '/provider/'
+      preLoaderRoute: typeof ProviderIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/bookings/': {
+      id: '/bookings/'
+      path: '/bookings'
+      fullPath: '/bookings/'
+      preLoaderRoute: typeof BookingsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/providers/$id': {
+      id: '/providers/$id'
+      path: '/providers/$id'
+      fullPath: '/providers/$id'
+      preLoaderRoute: typeof ProvidersIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/provider/services': {
+      id: '/provider/services'
+      path: '/provider/services'
+      fullPath: '/provider/services'
+      preLoaderRoute: typeof ProviderServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/provider/schedule': {
+      id: '/provider/schedule'
+      path: '/provider/schedule'
+      fullPath: '/provider/schedule'
+      preLoaderRoute: typeof ProviderScheduleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/provider/onboarding': {
+      id: '/provider/onboarding'
+      path: '/provider/onboarding'
+      fullPath: '/provider/onboarding'
+      preLoaderRoute: typeof ProviderOnboardingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/provider/bookings': {
+      id: '/provider/bookings'
+      path: '/provider/bookings'
+      fullPath: '/provider/bookings'
+      preLoaderRoute: typeof ProviderBookingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/bookings/new': {
+      id: '/bookings/new'
+      path: '/bookings/new'
+      fullPath: '/bookings/new'
+      preLoaderRoute: typeof BookingsNewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  CalendarRoute: CalendarRoute,
-  CaregiverRoute: CaregiverRoute,
-  EmergencyRoute: EmergencyRoute,
-  HowIFeelRoute: HowIFeelRoute,
+  ForgotPasswordRoute: ForgotPasswordRoute,
   LoginRoute: LoginRoute,
-  MedicationsRoute: MedicationsRoute,
+  OnboardingRoute: OnboardingRoute,
   ProfileRoute: ProfileRoute,
   SignUpRoute: SignUpRoute,
+  BookingsNewRoute: BookingsNewRoute,
+  ProviderBookingsRoute: ProviderBookingsRoute,
+  ProviderOnboardingRoute: ProviderOnboardingRoute,
+  ProviderScheduleRoute: ProviderScheduleRoute,
+  ProviderServicesRoute: ProviderServicesRoute,
+  ProvidersIdRoute: ProvidersIdRoute,
+  BookingsIndexRoute: BookingsIndexRoute,
+  ProviderIndexRoute: ProviderIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -1,76 +1,152 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { Pill, CalendarDays, HeartPulse, User, PhoneCall, BellRing } from "lucide-react";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Tile } from "@/components/ui/Tile";
-import { AlertBanner } from "@/components/ui/AlertBanner";
-import { usePatient } from "@/lib/patient-context";
+
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { discoverProviders, fetchHomeLocation, fetchLanguages, fetchServices } from "@/lib/marketplace-api";
 
 export const Route = createFileRoute("/")({
-  component: DashboardPage,
+  component: DiscoverPage,
 });
 
-function DashboardPage() {
-  const { t, i18n } = useTranslation();
-  const { patient, medications, appointments } = usePatient();
-  const now = new Date();
-  const h = now.getHours();
-  const greeting =
-    h < 12 ? t("dashboard.greetingMorning") : h < 18 ? t("dashboard.greetingAfternoon") : t("dashboard.greetingEvening");
-  const dateLabel = now.toLocaleDateString(i18n.resolvedLanguage, {
-    weekday: "long",
-    month: "long",
-    day: "numeric",
+function DiscoverPage() {
+  const { t } = useTranslation();
+  const [service, setService] = useState<string>("");
+  const [language, setLanguage] = useState<string>("");
+  const [lat, setLat] = useState("");
+  const [lng, setLng] = useState("");
+
+  const servicesQuery = useQuery({ queryKey: ["services"], queryFn: fetchServices });
+  const languagesQuery = useQuery({ queryKey: ["languages"], queryFn: fetchLanguages });
+  const homeQuery = useQuery({ queryKey: ["home-location"], queryFn: fetchHomeLocation });
+
+  const providersQuery = useQuery({
+    queryKey: ["providers", service, language, lat, lng],
+    queryFn: () =>
+      discoverProviders({
+        service: service || undefined,
+        language: language || undefined,
+        lat: lat || undefined,
+        lng: lng || undefined,
+      }),
   });
 
-  const pendingMed = medications.find((m) => !m.taken);
-  const nextAppt = appointments[0];
+  function useHomeCoords() {
+    const home = homeQuery.data;
+    if (home?.latitude && home?.longitude) {
+      setLat(String(home.latitude));
+      setLng(String(home.longitude));
+    }
+  }
 
   return (
     <div className="space-y-8">
       <header>
-        <p className="text-base text-muted-foreground font-semibold">{dateLabel}</p>
-        <h1 className="font-display text-4xl md:text-5xl mt-1">
-          {greeting}, {patient.firstName}.
-        </h1>
+        <h1 className="font-display text-4xl">{t("marketplace.discoverTitle")}</h1>
+        <p className="text-muted-foreground mt-2">{t("marketplace.discoverSubtitle")}</p>
       </header>
 
-      {pendingMed ? (
-        <AlertBanner
-          icon={BellRing}
-          title={t("dashboard.medDueTitle", { name: pendingMed.name, time: pendingMed.time })}
-          detail={t("dashboard.medDueDetail")}
-        />
+      {!homeQuery.data ? (
+        <div className="rounded-3xl border-2 border-accent/40 bg-accent/10 p-6">
+          <p className="mb-4">{t("marketplace.setHomeFirst")}</p>
+          <Button asChild className="min-h-14 rounded-full">
+            <Link to="/onboarding">{t("customer.startOnboarding")}</Link>
+          </Button>
+        </div>
       ) : null}
 
-      <section aria-labelledby="quick-actions">
-        <h2 id="quick-actions" className="font-display text-2xl mb-4">
-          {t("dashboard.whatToDo")}
-        </h2>
+      <section className="rounded-3xl border-2 border-border p-6 space-y-4">
+        <h2 className="font-display text-xl">{t("marketplace.filters")}</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <Tile
-            to="/medications"
-            label={t("dashboard.medsTile")}
-            icon={Pill}
-            tone="primary"
-            description={t("dashboard.medsToday", { count: medications.length })}
-          />
-          <Tile
-            to="/calendar"
-            label={t("dashboard.apptsTile")}
-            icon={CalendarDays}
-            tone="info"
-            description={nextAppt ? t("dashboard.nextWith", { doctor: nextAppt.doctor }) : undefined}
-          />
-          <Tile to="/how-i-feel" label={t("dashboard.feelTile")} icon={HeartPulse} tone="accent" />
-          <Tile
-            to="/emergency"
-            label={t("dashboard.emergencyTile")}
-            icon={PhoneCall}
-            tone="primary"
-            description={t("dashboard.emergencyTileDesc")}
-          />
-          <Tile to="/profile" label={t("dashboard.profileTile")} icon={User} tone="success" />
+          <div className="space-y-2">
+            <Label>{t("marketplace.service")}</Label>
+            <Select value={service} onValueChange={setService}>
+              <SelectTrigger className="min-h-14 rounded-2xl">
+                <SelectValue placeholder={t("marketplace.allServices")} />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="">{t("marketplace.allServices")}</SelectItem>
+                {(servicesQuery.data ?? []).map((s) => (
+                  <SelectItem key={s.id} value={s.slug}>
+                    {s.name}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="space-y-2">
+            <Label>{t("marketplace.language")}</Label>
+            <Select value={language} onValueChange={setLanguage}>
+              <SelectTrigger className="min-h-14 rounded-2xl">
+                <SelectValue placeholder={t("marketplace.allLanguages")} />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="">{t("marketplace.allLanguages")}</SelectItem>
+                {(languagesQuery.data ?? []).map((l) => (
+                  <SelectItem key={l.id} value={l.code}>
+                    {l.name}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
         </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="space-y-2">
+            <Label htmlFor="lat">{t("marketplace.latitude")}</Label>
+            <Input id="lat" value={lat} onChange={(e) => setLat(e.target.value)} className="min-h-14 rounded-2xl" />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="lng">{t("marketplace.longitude")}</Label>
+            <Input id="lng" value={lng} onChange={(e) => setLng(e.target.value)} className="min-h-14 rounded-2xl" />
+          </div>
+        </div>
+        <Button type="button" variant="outline" onClick={useHomeCoords} className="min-h-12 rounded-full border-2">
+          {t("marketplace.useHomeLocation")}
+        </Button>
+      </section>
+
+      <section aria-live="polite" className="space-y-4">
+        {providersQuery.isLoading ? <p>{t("common.loading")}</p> : null}
+        {providersQuery.error ? (
+          <p role="alert" className="text-destructive">{String(providersQuery.error)}</p>
+        ) : null}
+        {(providersQuery.data ?? []).length === 0 && !providersQuery.isLoading ? (
+          <p className="text-muted-foreground">{t("marketplace.noProviders")}</p>
+        ) : null}
+        {(providersQuery.data ?? []).map((provider) => (
+          <article
+            key={provider.id}
+            className="rounded-3xl border-2 border-border p-6 space-y-3"
+          >
+            <h3 className="font-display text-2xl">{provider.display_name}</h3>
+            <p className="text-muted-foreground">{provider.bio}</p>
+            {provider.service_area?.city ? (
+              <p className="text-sm">
+                {provider.service_area.city}
+                {provider.service_area.region ? `, ${provider.service_area.region}` : ""}
+              </p>
+            ) : null}
+            {provider.distance_km ? (
+              <p className="text-sm font-semibold">{t("marketplace.distanceKm", { km: provider.distance_km })}</p>
+            ) : null}
+            <Button asChild className="min-h-14 rounded-full">
+              <Link to="/providers/$id" params={{ id: String(provider.id) }}>
+                {t("marketplace.viewProvider")}
+              </Link>
+            </Button>
+          </article>
+        ))}
       </section>
     </div>
   );
