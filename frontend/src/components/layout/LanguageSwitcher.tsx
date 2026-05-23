@@ -1,12 +1,25 @@
 import * as React from "react";
+import { useRouterState } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 import { Languages, Check } from "lucide-react";
 import { SUPPORTED_LANGUAGES, type LanguageCode } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
-export function LanguageSwitcher({ compact = false }: { compact?: boolean }) {
+export function LanguageSwitcher({
+  compact = false,
+  menuPlacement = "bottom",
+}: {
+  compact?: boolean;
+  /** Use "top" when the trigger sits at the bottom of the viewport (sidebar). */
+  menuPlacement?: "top" | "bottom";
+}) {
   const { t, i18n } = useTranslation();
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
   const [open, setOpen] = React.useState(false);
+
+  React.useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
   const current =
     SUPPORTED_LANGUAGES.find((l) => l.code === i18n.resolvedLanguage) ??
     SUPPORTED_LANGUAGES[0];
@@ -49,7 +62,10 @@ export function LanguageSwitcher({ compact = false }: { compact?: boolean }) {
           <ul
             role="listbox"
             aria-label={t("common.language")}
-            className="absolute right-0 z-50 mt-2 min-w-56 rounded-2xl border-2 border-border bg-card p-2 shadow-xl"
+            className={cn(
+              "absolute left-0 z-50 min-w-56 rounded-2xl border-2 border-border bg-card p-2 shadow-xl",
+              menuPlacement === "top" ? "bottom-full mb-2" : "top-full mt-2",
+            )}
           >
             {SUPPORTED_LANGUAGES.map((l) => {
               const active = l.code === current.code;

@@ -53,7 +53,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           })}
         </nav>
         <div className="mt-auto pt-4">
-          <LanguageSwitcher />
+          <LanguageSwitcher menuPlacement="top" />
         </div>
       </aside>
 

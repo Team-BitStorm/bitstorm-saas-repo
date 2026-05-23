@@ -15,6 +15,10 @@ function EmergencyPage() {
   const [confirmed, setConfirmed] = React.useState(false);
   const primary = caregivers[0];
 
+  React.useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+  }, []);
+
   if (confirmed) {
     return (
       <div className="space-y-6 text-center py-10">
