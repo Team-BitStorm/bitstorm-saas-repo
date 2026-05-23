@@ -36,6 +36,7 @@ ALLOWED_HOSTS = ["localhost", "127.0.0.1", "bitstorm-saas-repo.onrender.com"]
 # Application definition
 
 INSTALLED_APPS = [
+    "core",
     "accounts",  # this has to be here because it is a mini app inside of Django and we need to define here
     "rest_framework",  # this is the Django DRF that we will use as the API layer
     "corsheaders",  # this is required so the frontend and django backend can communicate
@@ -170,6 +171,12 @@ SPECTACULAR_SETTINGS = {
     "DESCRIPTION": "SaaS backend API",
     "VERSION": "1.0.0",
     "SERVE_INCLUDE_SCHEMA": False,
+    "TAGS": [
+        {
+            "name": "core",
+            "description": "Core domain resources (catalog, profiles, reviews)",
+        },
+    ],
     # Separate request-body editors per content type in Swagger UI
     "COMPONENT_SPLIT_REQUEST": True,
     #  THIS is what enables JWT auth in Swagger UI

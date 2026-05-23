@@ -38,6 +38,11 @@ class User(AbstractUser):
         choices=Role.choices,
         default=Role.CUSTOMER,
     )
+    languages = models.ManyToManyField(
+        "core.Language",
+        blank=True,
+        related_name="users",
+    )
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ["first_name", "last_name"]
