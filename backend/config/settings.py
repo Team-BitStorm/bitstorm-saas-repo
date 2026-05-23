@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ["localhost", "127.0.0.1", "bitstorm-saas-repo.onrender.com"]
 INSTALLED_APPS = [
     "authentication",  # this has to be here because it is a mini app inside of Django and we need to define here
     "rest_framework",  # this is the Django DRF that we will use as the API layer
+    "corsheaders",  # this is required so the frontend and django backend can communicate
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -42,6 +43,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "corsheaders.middleware.CorsMiddleware",  # middleware here is required so Django can wire the apps together
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -51,6 +53,10 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = "config.urls"
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",  # TODO: change this once we know frontend port and once we deploy frontend on Render
+]
 
 TEMPLATES = [
     {
