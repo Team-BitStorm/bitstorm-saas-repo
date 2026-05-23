@@ -1,5 +1,7 @@
-// const API_BASE_URL = "https://bitstorm-saas-repo.onrender.com";
-const API_BASE_URL = "http://127.0.0.1:8000/";
+const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL ?? "http://127.0.0.1:8000").replace(
+  /\/+$/,
+  "",
+);
 
 export class ApiError extends Error {
   status: number;
@@ -13,12 +15,17 @@ export class ApiError extends Error {
   }
 }
 
+function buildApiUrl(path: string): string {
+  const normalizedPath = path.startsWith("/") ? path : `/${path}`;
+  return `${API_BASE_URL}${normalizedPath}`;
+}
+
 export async function apiFetch<T>(
   path: string,
   options: RequestInit & { token?: string } = {},
 ): Promise<T> {
   const { token, headers, ...rest } = options;
-  const response = await fetch(`${API_BASE_URL}${path}`, {
+  const response = await fetch(buildApiUrl(path), {
     ...rest,
     headers: {
       "Content-Type": "application/json",
