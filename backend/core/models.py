@@ -665,12 +665,12 @@ class Invoice(models.Model):
     )
     customer = models.ForeignKey(
         User,
-        on_delete=models.PROTECT,
+        on_delete=models.CASCADE,
         related_name="invoices_as_customer",
     )
     provider = models.ForeignKey(
         ProviderProfile,
-        on_delete=models.PROTECT,
+        on_delete=models.CASCADE,
         related_name="invoices_as_provider",
     )
     invoice_number = models.CharField(max_length=64, unique=True)
