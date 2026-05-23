@@ -21,6 +21,11 @@ dotenv.load_dotenv()
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get("DJANGOSECRET")
+FIELD_ENCRYPTION_KEY = os.environ.get(
+    "ENCRYPTION_KEY"
+)  # encryption key for sensitive data
+
+AUTH_USER_MODEL = "accounts.User"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -65,6 +70,7 @@ CSRF_TRUSTED_ORIGINS = [
     "http://localhost:5173",  # this is for cookie storage and recognition by django backend
 ]
 
+CORS_ALLOW_CREDENTIALS = True
 REST_FRAMEWORK = {
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
     "DEFAULT_AUTHENTICATION_CLASSES": (
@@ -164,4 +170,19 @@ SPECTACULAR_SETTINGS = {
     "DESCRIPTION": "SaaS backend API",
     "VERSION": "1.0.0",
     "SERVE_INCLUDE_SCHEMA": False,
+    # 🔑 THIS is what enables JWT auth in Swagger UI
+    "SECURITY": [{"BearerAuth": []}],
+    "COMPONENTS": {
+        "securitySchemes": {
+            "BearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT",
+            }
+        }
+    },
+    # Makes "Authorize" stick after refresh
+    "SWAGGER_UI_SETTINGS": {
+        "persistAuthorization": True,
+    },
 }
