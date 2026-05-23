@@ -9,14 +9,21 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SignUpRouteImport } from './routes/sign-up'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as MedicationsRouteImport } from './routes/medications'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as HowIFeelRouteImport } from './routes/how-i-feel'
 import { Route as EmergencyRouteImport } from './routes/emergency'
 import { Route as CaregiverRouteImport } from './routes/caregiver'
 import { Route as CalendarRouteImport } from './routes/calendar'
 import { Route as IndexRouteImport } from './routes/index'
 
+const SignUpRoute = SignUpRouteImport.update({
+  id: '/sign-up',
+  path: '/sign-up',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProfileRoute = ProfileRouteImport.update({
   id: '/profile',
   path: '/profile',
@@ -25,6 +32,11 @@ const ProfileRoute = ProfileRouteImport.update({
 const MedicationsRoute = MedicationsRouteImport.update({
   id: '/medications',
   path: '/medications',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const HowIFeelRoute = HowIFeelRouteImport.update({
@@ -59,8 +71,10 @@ export interface FileRoutesByFullPath {
   '/caregiver': typeof CaregiverRoute
   '/emergency': typeof EmergencyRoute
   '/how-i-feel': typeof HowIFeelRoute
+  '/login': typeof LoginRoute
   '/medications': typeof MedicationsRoute
   '/profile': typeof ProfileRoute
+  '/sign-up': typeof SignUpRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -68,8 +82,10 @@ export interface FileRoutesByTo {
   '/caregiver': typeof CaregiverRoute
   '/emergency': typeof EmergencyRoute
   '/how-i-feel': typeof HowIFeelRoute
+  '/login': typeof LoginRoute
   '/medications': typeof MedicationsRoute
   '/profile': typeof ProfileRoute
+  '/sign-up': typeof SignUpRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -78,8 +94,10 @@ export interface FileRoutesById {
   '/caregiver': typeof CaregiverRoute
   '/emergency': typeof EmergencyRoute
   '/how-i-feel': typeof HowIFeelRoute
+  '/login': typeof LoginRoute
   '/medications': typeof MedicationsRoute
   '/profile': typeof ProfileRoute
+  '/sign-up': typeof SignUpRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -89,8 +107,10 @@ export interface FileRouteTypes {
     | '/caregiver'
     | '/emergency'
     | '/how-i-feel'
+    | '/login'
     | '/medications'
     | '/profile'
+    | '/sign-up'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -98,8 +118,10 @@ export interface FileRouteTypes {
     | '/caregiver'
     | '/emergency'
     | '/how-i-feel'
+    | '/login'
     | '/medications'
     | '/profile'
+    | '/sign-up'
   id:
     | '__root__'
     | '/'
@@ -107,8 +129,10 @@ export interface FileRouteTypes {
     | '/caregiver'
     | '/emergency'
     | '/how-i-feel'
+    | '/login'
     | '/medications'
     | '/profile'
+    | '/sign-up'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -117,12 +141,21 @@ export interface RootRouteChildren {
   CaregiverRoute: typeof CaregiverRoute
   EmergencyRoute: typeof EmergencyRoute
   HowIFeelRoute: typeof HowIFeelRoute
+  LoginRoute: typeof LoginRoute
   MedicationsRoute: typeof MedicationsRoute
   ProfileRoute: typeof ProfileRoute
+  SignUpRoute: typeof SignUpRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/sign-up': {
+      id: '/sign-up'
+      path: '/sign-up'
+      fullPath: '/sign-up'
+      preLoaderRoute: typeof SignUpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/profile': {
       id: '/profile'
       path: '/profile'
@@ -135,6 +168,13 @@ declare module '@tanstack/react-router' {
       path: '/medications'
       fullPath: '/medications'
       preLoaderRoute: typeof MedicationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/how-i-feel': {
@@ -181,8 +221,10 @@ const rootRouteChildren: RootRouteChildren = {
   CaregiverRoute: CaregiverRoute,
   EmergencyRoute: EmergencyRoute,
   HowIFeelRoute: HowIFeelRoute,
+  LoginRoute: LoginRoute,
   MedicationsRoute: MedicationsRoute,
   ProfileRoute: ProfileRoute,
+  SignUpRoute: SignUpRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
