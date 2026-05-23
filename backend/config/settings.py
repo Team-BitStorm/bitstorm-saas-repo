@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     "rest_framework",  # this is the Django DRF that we will use as the API layer
     "corsheaders",  # this is required so the frontend and django backend can communicate
     "rest_framework_simplejwt.token_blacklist",  # for refresh token expiration
+    "drf_spectacular",  # for swagger integration
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -65,6 +66,7 @@ CSRF_TRUSTED_ORIGINS = [
 ]
 
 REST_FRAMEWORK = {
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
@@ -153,3 +155,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = "static/"
+
+
+# SWAGGER eye candy
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "Bitstorm API",
+    "DESCRIPTION": "SaaS backend API",
+    "VERSION": "1.0.0",
+    "SERVE_INCLUDE_SCHEMA": False,
+}
