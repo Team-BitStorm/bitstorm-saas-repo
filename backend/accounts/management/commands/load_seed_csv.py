@@ -25,8 +25,11 @@ from rest_framework_simplejwt.token_blacklist.models import BlacklistedToken, Ou
 
 from accounts.models import User
 
-DB_ROOT = Path(settings.BASE_DIR) / "db"
 DEFAULT_PASSWORD = "CarePath2026!"
+
+
+def _db_root() -> Path:
+    return Path(settings.BASE_DIR) / "db"
 
 ACTION_FLAG_MAP = {
     "1": ADDITION,
@@ -36,7 +39,7 @@ ACTION_FLAG_MAP = {
 
 
 def _csv_path(*parts: str) -> Path:
-    path = DB_ROOT.joinpath(*parts)
+    path = _db_root().joinpath(*parts)
     if not path.is_file():
         raise CommandError(f"Missing seed file: {path}")
     return path
@@ -78,8 +81,9 @@ class Command(BaseCommand):
         )
 
     def handle(self, *args, **options):
-        if not DB_ROOT.is_dir():
-            raise CommandError(f"Seed directory not found: {DB_ROOT}")
+        db_root = _db_root()
+        if not db_root.is_dir():
+            raise CommandError(f"Seed directory not found: {db_root}")
 
         password: str = options["password"]
         if options["clear"]:

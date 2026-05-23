@@ -1,6 +1,9 @@
 id,name
-1,Customers
-2,Providers
-3,Staff
-4,Moderators
-5,Support
+1,Administratori
+2,Editori
+3,Vizitatori
+4,Moderatori
+5,Suport
+6,Analiști
+7,Manageri
+8,Contabili

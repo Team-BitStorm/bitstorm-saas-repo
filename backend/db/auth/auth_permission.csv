@@ -1,17 +1,33 @@
-id,name,content_type_id,codename
-1,Can add user,1,add_user
-2,Can change user,1,change_user
-3,Can delete user,1,delete_user
-4,Can view user,1,view_user
-5,Can add group,2,add_group
-6,Can change group,2,change_group
-7,Can delete group,2,delete_group
-8,Can view group,2,view_group
-9,Can add logentry,3,add_logentry
-10,Can change logentry,3,change_logentry
-11,Can delete logentry,3,delete_logentry
-12,Can view logentry,3,view_logentry
-13,Can add permission,4,add_permission
-14,Can change permission,4,change_permission
-15,Can delete permission,4,delete_permission
-16,Can view permission,4,view_permission
+id,name_ro,content_type_id,codename_ro,django_codename,django_app,django_model
+1,Poate adăuga utilizator,1,add_utilizator,add_user,accounts,user
+2,Poate modifica utilizator,1,change_utilizator,change_user,accounts,user
+3,Poate șterge utilizator,1,delete_utilizator,delete_user,accounts,user
+4,Poate vizualiza utilizator,1,view_utilizator,view_user,accounts,user
+5,Poate adăuga grup,2,add_grup,add_group,auth,group
+6,Poate modifica grup,2,change_grup,change_group,auth,group
+7,Poate șterge grup,2,delete_grup,delete_group,auth,group
+8,Poate vizualiza grup,2,view_grup,view_group,auth,group
+9,Poate adăuga intrare jurnal,3,add_intrare_jurnal,add_logentry,admin,logentry
+10,Poate modifica intrare jurnal,3,change_intrare_jurnal,change_logentry,admin,logentry
+11,Poate șterge intrare jurnal,3,delete_intrare_jurnal,delete_logentry,admin,logentry
+12,Poate vizualiza intrare jurnal,3,view_intrare_jurnal,view_logentry,admin,logentry
+13,Poate adăuga permisiune,4,add_permisiune,add_permission,auth,permission
+14,Poate modifica permisiune,4,change_permisiune,change_permission,auth,permission
+15,Poate șterge permisiune,4,delete_permisiune,delete_permission,auth,permission
+16,Poate vizualiza permisiune,4,view_permisiune,view_permission,auth,permission
+17,Poate adăuga tip conținut,5,add_tip_conținut,add_contenttype,contenttypes,contenttype
+18,Poate modifica tip conținut,5,change_tip_conținut,change_contenttype,contenttypes,contenttype
+19,Poate șterge tip conținut,5,delete_tip_conținut,delete_contenttype,contenttypes,contenttype
+20,Poate vizualiza tip conținut,5,view_tip_conținut,view_contenttype,contenttypes,contenttype
+21,Poate adăuga sesiune,6,add_sesiune,add_session,sessions,session
+22,Poate modifica sesiune,6,change_sesiune,change_session,sessions,session
+23,Poate șterge sesiune,6,delete_sesiune,delete_session,sessions,session
+24,Poate vizualiza sesiune,6,view_sesiune,view_session,sessions,session
+25,Poate adăuga token activ,7,add_token_activ,add_outstandingtoken,token_blacklist,outstandingtoken
+26,Poate modifica token activ,7,change_token_activ,change_outstandingtoken,token_blacklist,outstandingtoken
+27,Poate șterge token activ,7,delete_token_activ,delete_outstandingtoken,token_blacklist,outstandingtoken
+28,Poate vizualiza token activ,7,view_token_activ,view_outstandingtoken,token_blacklist,outstandingtoken
+29,Poate adăuga token blocat,8,add_token_blocat,add_blacklistedtoken,token_blacklist,blacklistedtoken
+30,Poate modifica token blocat,8,change_token_blocat,change_blacklistedtoken,token_blacklist,blacklistedtoken
+31,Poate șterge token blocat,8,delete_token_blocat,delete_blacklistedtoken,token_blacklist,blacklistedtoken
+32,Poate vizualiza token blocat,8,view_token_blocat,view_blacklistedtoken,token_blacklist,blacklistedtoken

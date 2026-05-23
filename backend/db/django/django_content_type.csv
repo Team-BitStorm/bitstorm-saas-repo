@@ -5,3 +5,5 @@ id,app_label,model
 4,auth,permission
 5,contenttypes,contenttype
 6,sessions,session
+7,token_blacklist,outstandingtoken
+8,token_blacklist,blacklistedtoken
