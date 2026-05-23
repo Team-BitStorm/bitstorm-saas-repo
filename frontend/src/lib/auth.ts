@@ -1,4 +1,4 @@
-import { apiFetch } from "./api";
+import { ApiError, apiFetch } from "./api";
 
 export type UserRole = "customer" | "provider";
 
@@ -10,14 +10,26 @@ export type AuthUser = {
   phone_number: string;
   birth_date: string | null;
   role: UserRole;
+  sms_2fa_enabled?: boolean;
+  totp_configured?: boolean;
   date_joined: string;
 };
 
-type LoginResponse = {
+type LoginSuccessResponse = {
+  requires_2fa: false;
   access: string;
   refresh: string;
   user: AuthUser;
 };
+
+type LoginTwoFactorResponse = {
+  requires_2fa: true;
+  pre_auth_token: string;
+  available_2fa_methods: string[];
+  detail?: string;
+};
+
+type LoginResponse = LoginSuccessResponse | LoginTwoFactorResponse;
 
 type RegisterPayload = {
   email: string;
@@ -71,11 +83,21 @@ export function clearSession(): void {
   localStorage.removeItem(USER_KEY);
 }
 
-export async function login(email: string, password: string): Promise<AuthUser> {
+export async function login(identifier: string, password: string): Promise<AuthUser> {
   const data = await apiFetch<LoginResponse>("/api/auth/login/", {
     method: "POST",
-    body: JSON.stringify({ email, password }),
+    body: JSON.stringify({ identifier, password }),
   });
+
+  if (data.requires_2fa) {
+    throw new ApiError(
+      data.detail ??
+        "Two-factor authentication is required. Complete verification in the API docs flow.",
+      200,
+      data,
+    );
+  }
+
   persistSession(data.access, data.refresh, data.user);
   return data.user;
 }
