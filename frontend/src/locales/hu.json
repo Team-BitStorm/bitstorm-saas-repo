@@ -1,0 +1,108 @@
+{
+  "app": {
+    "name": "CarePath",
+    "tagline": "Az ön gondozása, egyszerűen"
+  },
+  "nav": {
+    "home": "Főoldal",
+    "meds": "Gyógyszerek",
+    "feel": "Hogy érzem magam",
+    "calendar": "Naptár",
+    "profile": "Profil"
+  },
+  "common": {
+    "back": "Vissza",
+    "backHome": "Vissza a főoldalra",
+    "cancel": "Mégse",
+    "confirm": "Megerősítés",
+    "language": "Nyelv",
+    "chooseLanguage": "Válasszon nyelvet"
+  },
+  "emergency": {
+    "fab": "Segítség",
+    "fabAria": "Hívjon segítséget — vészhelyzet",
+    "title": "Segítséget hív?",
+    "subtitle": "Ez most felhívja: {{name}}.",
+    "callerInfo": "{{relation}} · {{phone}}",
+    "yesCall": "Igen, hívás most",
+    "no": "Nem, mégse",
+    "calling": "Hívás folyamatban: {{name}}…",
+    "stayCalm": "Maradjon nyugodt. A segítség úton van.",
+    "openDialer": "Telefon megnyitása",
+    "metaTitle": "Segítséghívás — CarePath",
+    "metaDesc": "Vészhelyzetben hívja a gondozóját."
+  },
+  "dashboard": {
+    "greetingMorning": "Jó reggelt",
+    "greetingAfternoon": "Jó napot",
+    "greetingEvening": "Jó estét",
+    "whatToDo": "Mit szeretne csinálni?",
+    "medsTile": "Gyógyszereim",
+    "medsToday": "{{count}} ma",
+    "apptsTile": "Időpontjaim",
+    "nextWith": "Következő: {{doctor}}",
+    "feelTile": "Hogy érzem magam ma",
+    "emergencyTile": "Segítséghívás",
+    "emergencyTileDesc": "Gondozó gyors elérése",
+    "profileTile": "Profilom",
+    "medDueTitle": "{{name}} esedékes {{time}}-kor",
+    "medDueDetail": "Koppintson a Gyógyszereim menüre a jelöléshez."
+  },
+  "meds": {
+    "title": "Gyógyszereim",
+    "subtitle": "Minden adag után koppintson a „Bevettem” gombra.",
+    "morning": "Reggel",
+    "afternoon": "Délután",
+    "night": "Este",
+    "taken": "Bevéve",
+    "iTookIt": "Bevettem",
+    "markTaken": "Bevettem: {{name}}",
+    "markNotTaken": "{{name}} jelölése be nem vettként",
+    "metaTitle": "Gyógyszereim — CarePath",
+    "metaDesc": "Napi gyógyszerei, könnyen követhető."
+  },
+  "feel": {
+    "title": "Hogy érzi magát ma?",
+    "subtitle": "Válassza ki, ami illik. Nincs rossz válasz.",
+    "symptomsHeading": "Tünetei",
+    "painHeading": "Van fájdalma?",
+    "send": "Küldés a gondozónak",
+    "thanks": "Köszönjük",
+    "notified": "A gondozóját értesítettük.",
+    "noPain": "Nincs fájdalom",
+    "worstPain": "Legrosszabb fájdalom",
+    "painLevel": "Fájdalom szintje: {{value}} / 10",
+    "painLevelAria": "Fájdalom szintje 1-től 10-ig",
+    "painLevelN": "Fájdalom szintje {{n}}",
+    "groupAria": "Hogy érzi magát?",
+    "metaTitle": "Hogy érzem magam ma — CarePath",
+    "metaDesc": "Mondja el a gondozójának, hogy érzi magát.",
+    "symptoms": {
+      "okay": "Jól",
+      "happy": "Boldog",
+      "tired": "Fáradt",
+      "pain": "Fájdalom",
+      "dizzy": "Szédülés",
+      "nauseous": "Hányinger",
+      "sad": "Szomorú",
+      "confused": "Zavart"
+    }
+  },
+  "calendar": {
+    "title": "Időpontjaim",
+    "subtitle": "Közelgő látogatások és hívások.",
+    "comingNext": "Havi naptár és otthoni látogatás kérése — hamarosan.",
+    "metaTitle": "Időpontjaim — CarePath"
+  },
+  "caregiver": {
+    "title": "Gondozói nézet",
+    "subtitle": "Vitális értékek, friss tevékenység és jegyzetek — hamarosan.",
+    "metaTitle": "Gondozói nézet — CarePath"
+  },
+  "profile": {
+    "born": "Született: {{dob}} · Vércsoport: {{blood}}",
+    "allergies": "Allergiák",
+    "comingNext": "Teljes kórtörténet és gondozói adatok — hamarosan.",
+    "metaTitle": "Profilom — CarePath"
+  }
+}
