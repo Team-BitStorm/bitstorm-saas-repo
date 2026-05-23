@@ -1,0 +1,1 @@
+# Admin registration intentionally omitted.

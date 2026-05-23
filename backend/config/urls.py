@@ -26,6 +26,7 @@ from drf_spectacular.views import (
 urlpatterns = [
     path("", RedirectView.as_view(url="/api/docs/", permanent=False)),
     path("api/auth/", include("accounts.urls")),
+    path("api/core/", include("core.urls")),
     path("admin/", admin.site.urls),
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
     path(
