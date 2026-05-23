@@ -103,6 +103,8 @@
     "born": "Born {{dob}} · Blood type {{blood}}",
     "allergies": "Allergies",
     "comingNext": "Full medical history and caregiver details — coming next.",
+    "signOut": "Sign out",
+    "signingOut": "Signing out…",
     "metaTitle": "My Profile — CarePath"
   }
 }

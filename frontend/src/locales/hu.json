@@ -103,6 +103,8 @@
     "born": "Született: {{dob}} · Vércsoport: {{blood}}",
     "allergies": "Allergiák",
     "comingNext": "Teljes kórtörténet és gondozói adatok — hamarosan.",
+    "signOut": "Kijelentkezés",
+    "signingOut": "Kijelentkezés…",
     "metaTitle": "Profilom — CarePath"
   }
 }

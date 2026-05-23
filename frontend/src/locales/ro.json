@@ -103,6 +103,8 @@
     "born": "Născut(ă) {{dob}} · Grupa de sânge {{blood}}",
     "allergies": "Alergii",
     "comingNext": "Istoric medical complet și detalii îngrijitor — în curând.",
+    "signOut": "Deconectare",
+    "signingOut": "Se deconectează…",
     "metaTitle": "Profilul meu — CarePath"
   }
 }

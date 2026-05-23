@@ -15,7 +15,7 @@ export function LoginForm() {
   const search = useSearch({ from: "/login" });
   const { setUser } = useAuth();
 
-  const [email, setEmail] = useState("");
+  const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -26,7 +26,7 @@ export function LoginForm() {
     setIsSubmitting(true);
 
     try {
-      const user = await login(email.trim(), password);
+      const user = await login(identifier.trim(), password);
       setUser(user);
       const redirect =
         typeof search.redirect === "string" && search.redirect.startsWith("/")
@@ -52,16 +52,18 @@ export function LoginForm() {
       ) : null}
 
       <div className="space-y-2">
-        <Label htmlFor="email" className="text-base">
-          {t("auth.email")}
+        <Label htmlFor="identifier" className="text-base">
+          {t("auth.identifier", {
+            defaultValue: "Email, phone, or CNP",
+          })}
         </Label>
         <Input
-          id="email"
-          type="email"
-          autoComplete="email"
+          id="identifier"
+          type="text"
+          autoComplete="username"
           required
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          value={identifier}
+          onChange={(e) => setIdentifier(e.target.value)}
           className="min-h-14 text-lg rounded-2xl"
         />
       </div>

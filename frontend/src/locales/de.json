@@ -103,6 +103,8 @@
     "born": "Geboren {{dob}} · Blutgruppe {{blood}}",
     "allergies": "Allergien",
     "comingNext": "Vollständige Krankengeschichte und Pflegerdaten — folgt bald.",
+    "signOut": "Abmelden",
+    "signingOut": "Abmelden…",
     "metaTitle": "Mein Profil — CarePath"
   }
 }
