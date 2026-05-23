@@ -67,16 +67,28 @@ The backend must explicitly allow the frontend origin for cross-origin requests.
 
 ### 3.2 Authentication (design)
 
+**Swagger groups:** `auth` (register, login, JWT) and `2FA-auth` (two-factor setup, challenge, password reset).
+
 ```mermaid
 sequenceDiagram
     participant FE as Frontend
     participant BE as Backend
     participant DB as Database
+    participant App as Authenticator_or_SMS
 
     FE->>BE: Register
     BE->>DB: Store account
-    FE->>BE: Login with email and password
-    BE-->>FE: Access token, refresh token, basic user info including role
+    FE->>BE: Login with identifier and password
+
+    alt No 2FA enabled
+        BE-->>FE: access + refresh JWT
+    else 2FA enabled
+        BE-->>FE: pre_auth_token + available methods
+        FE->>BE: Start challenge (user picks SMS or TOTP)
+        BE-->>App: SMS stub code OR user reads TOTP app
+        FE->>BE: Verify 6-digit code
+        BE-->>FE: access + refresh JWT
+    end
 
     FE->>BE: Authenticated requests
     BE-->>FE: Data for logged-in user
@@ -90,15 +102,86 @@ sequenceDiagram
 
 | Concern | Design choice |
 |---------|----------------|
-| Login identifier | Email (no separate username) |
+| Login identifier | **Email**, **phone number**, or **CNP/SSN** — single field `identifier` + `password` |
+| Phone format | Whitespace stripped on save and lookup (`+40 740 123 193` → `+40740123193`) |
 | Roles | **Customer** or **Provider** — drives which screens and actions are available |
 | Access token lifetime | Short (on the order of minutes) |
 | Refresh token lifetime | Long (on the order of weeks), rotatable and revocable on logout |
 | Protected calls | Send access token in the standard authorization header |
+| 2FA timing | Enabled **after register** in account settings — not during signup |
 
-Interactive API exploration is available via **Swagger** on the backend (auth and domain resources grouped for readability).
+Interactive API exploration: **Swagger** at `/api/docs/` (`auth` and `2FA-auth` tags).
 
-### 3.3 Domain data exposed to the client (read path)
+### 3.3 Two-factor authentication (frontend integration)
+
+Two independent methods; **both can be enabled**. User **chooses one per login**. This is **not** push-based 2FA (no “approve on phone” notifications).
+
+| Method | Best for | How it works |
+|--------|----------|--------------|
+| **SMS OTP** | Older users, simpler UX | 6-digit code; dev/stub returns `otp_code` in JSON (no real SMS yet) |
+| **TOTP** | Security-conscious users | Google Authenticator (or similar); QR from `provisioning_uri` |
+
+#### API surface (base path `/api/auth/`)
+
+| Step | Method | Path | Auth required? |
+|------|--------|------|----------------|
+| Register / login / refresh / logout / me | various | `register/`, `login/`, … | login/register: no |
+| 2FA status | GET | `2fa/status/` | yes |
+| Enable/disable method | POST | `2fa/method/` | yes — body: `{ method: "sms"\|"totp", enabled: true\|false }` |
+| TOTP setup | POST | `2fa/totp/setup/` | yes — returns `secret`, `provisioning_uri` |
+| TOTP confirm setup | POST | `2fa/totp/confirm/` | yes — body: `{ code: "123456" }` |
+| Disable all 2FA | POST | `2fa/disable/` | yes — body: `{ password: "..." }` |
+| Login step 1 | POST | `login/` | no |
+| Login step 2 — pick method | POST | `2fa/challenge/` | no — `{ pre_auth_token, method }` |
+| Login step 3 — SMS | POST | `2fa/sms/verify-login/` | no |
+| Login step 3 — TOTP | POST | `2fa/totp/verify-login/` | no |
+| Password reset request | POST | `password-reset/request/` | no — `{ phone_number }` |
+| Password reset confirm | POST | `password-reset/confirm/` | no — phone + otp + new password |
+
+#### Login flow (frontend state machine)
+
+1. **POST** `login/` with `{ identifier, password }`.
+2. If `requires_2fa === false` → store `access` / `refresh`, done.
+3. If `requires_2fa === true` → keep `pre_auth_token` in memory; read `available_2fa_methods` (e.g. `["sms","totp"]`).
+4. Show method picker (hide options not in the list; if only one method, skip picker).
+5. **POST** `2fa/challenge/` with `{ pre_auth_token, method }`.
+   - SMS: response may include `otp_code` in dev (stub).
+   - TOTP: prompt for code from authenticator app.
+6. **POST** `2fa/sms/verify-login/` or `2fa/totp/verify-login/` with `{ pre_auth_token, code }`.
+7. Store JWT; clear `pre_auth_token`.
+
+`pre_auth_token` expires in ~5 minutes — on failure, return user to step 1.
+
+#### TOTP setup flow (settings / security screen)
+
+1. **POST** `2fa/totp/setup/` → render QR from `provisioning_uri` (library e.g. qrcode.react).
+2. User scans with Google Authenticator.
+3. **POST** `2fa/totp/confirm/` with current 6-digit code.
+4. **POST** `2fa/method/` with `{ method: "totp", enabled: true }`.
+5. **GET** `2fa/status/` to confirm `available_2fa_methods` includes `"totp"`.
+
+#### SMS 2FA setup
+
+Requires `phone_number` on account. **POST** `2fa/method/` with `{ method: "sms", enabled: true }`.
+
+#### Password recovery (separate from login 2FA)
+
+SMS-only today (phone number → OTP → new password). **Not** TOTP. Flow:
+
+1. `password-reset/request/` → `{ phone_number }`
+2. User enters OTP (stub: `otp_code` in response in dev)
+3. `password-reset/confirm/` → `{ phone_number, otp, new_password }`
+4. Redirect to login
+
+#### UI recommendations (accessibility)
+
+- Large inputs for 6-digit codes; optional auto-advance per digit.
+- Plain-language labels: “Text me a code” vs “Use authenticator app”.
+- TOTP setup: show QR **and** manual secret entry for users who cannot scan.
+- Do not rely on QR-only flows for elderly users — offer SMS as default in settings copy.
+- Never display CNP in API responses; collect at register only.
+
+### 3.4 Domain data exposed to the client (read path)
 
 Today the API supports **read-only** access to shared domain data under a **core** documentation group:
 
@@ -116,7 +199,7 @@ Sensitive national ID numbers **must never** appear in API responses. Passwords 
 
 **Write operations** (create/update profile, post review, create booking) are **planned** but not yet part of the public API contract.
 
-### 3.4 What the frontend should do
+### 3.5 What the frontend should do
 
 **In place today (UI)**
 
@@ -126,12 +209,14 @@ Sensitive national ID numbers **must never** appear in API responses. Passwords 
 
 **Expected responsibilities**
 
-1. **Authentication** — Registration, login, logout, silent refresh, and route protection by role.
-2. **Customer onboarding** — Capture identity, contact details, encrypted national ID at signup, home location, spoken languages, and eventual medical context (allergies, medications, history).
-3. **Provider onboarding** — Business identity, service area, languages, and which catalog services they deliver.
-4. **Discovery** — Browse services and providers; filter by location and language until dedicated search exists.
-5. **Accessibility** — **Text-to-speech** on critical content (medication reminders, navigation, emergency confirmation), with a non-audio fallback for users who disable speech or motion.
-6. **Resilience** — Clear handling of expired sessions and server errors without losing user context.
+1. **Authentication** — Registration; login with email, phone, or CNP; optional 3-step 2FA; logout; silent refresh; route protection by role.
+2. **Security settings** — Screens to enable SMS and/or TOTP (post-register); TOTP QR setup; disable 2FA with password confirmation.
+3. **Password recovery** — Phone-based OTP flow (stub SMS in dev).
+4. **Customer onboarding** — Capture identity, contact details, national ID at signup, home location, spoken languages, and eventual medical context.
+5. **Provider onboarding** — Business identity, service area, languages, and which catalog services they deliver.
+6. **Discovery** — Browse services and providers; filter by location and language until dedicated search exists.
+7. **Accessibility** — **Text-to-speech** on critical content, with non-audio fallback; prefer SMS 2FA as the simpler path in copy for older users.
+8. **Resilience** — Handle expired `pre_auth_token` and access tokens; accessible error messages.
 
 ---
 
@@ -139,11 +224,14 @@ Sensitive national ID numbers **must never** appear in API responses. Passwords 
 
 ### 4.1 In scope today
 
-- REST API for authentication (register, login, refresh, logout, current user).
-- Encrypted storage for national ID / CNP at rest; hashed passwords.
+- REST API for authentication (register, login with email/phone/CNP, refresh, logout, current user).
+- **Dual 2FA:** SMS OTP (stub) and TOTP (Google Authenticator); user chooses method at login when both enabled.
+- Password reset via phone SMS OTP (stub).
+- Encrypted storage for national ID / CNP at rest; searchable login via one-way hash; hashed passwords.
+- Phone whitespace normalization.
 - Relational domain model for profiles, services, locations, languages, reviews, and provider–service associations.
 - Cross-origin support for the SPA.
-- Machine-readable API documentation for integrators.
+- Machine-readable API documentation (Swagger tags: `auth`, `2FA-auth`, `core`).
 
 ### 4.2 Full product expectations
 
@@ -228,8 +316,11 @@ Exact partitioning and replica strategy should follow measured load—not premat
 | Text-to-speech for key flows | Planned |
 | Multi-language interface | In place (UI); sync with account languages planned |
 | Simple onboarding (location, medical context) | Planned |
-| Live API integration | Planned (auth and read catalog ready on backend) |
+| Live API integration | In progress (auth + 2FA + read catalog on backend) |
 | Role-specific experiences (customer vs provider) | Planned |
+| 2FA (SMS + TOTP) settings UI | Planned |
+| Login method picker (SMS vs authenticator) | Planned |
+| Password recovery (phone OTP) | Planned |
 
 ---
 
@@ -250,5 +341,6 @@ Exact partitioning and replica strategy should follow measured load—not premat
 |---------|--------|
 | 1.0 | Initial architecture, domain model, and layer responsibilities |
 | 1.1 | Refocused as design doc; removed implementation-level naming |
+| 1.2 | Login identifiers (email/phone/CNP), dual 2FA flows, frontend integration guide |
 
-For request/response shapes and try-it-out calls, use the backend **Swagger** documentation in deployed or local environments.
+For request/response shapes and try-it-out calls, use the backend **Swagger** documentation in deployed or local environments (`auth`, `2FA-auth`, `core` tags).
