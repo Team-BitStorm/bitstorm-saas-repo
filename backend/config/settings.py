@@ -89,6 +89,12 @@ SIMPLE_JWT = {
     "AUTH_HEADER_TYPES": ("Bearer",),
 }
 
+# Two-factor (TOTP + stub SMS)
+TOTP_ISSUER = "BitHealth"
+SMS_OTP_STUB_EXPOSE = True  # Return otp_code in API instead of sending SMS
+PRE_AUTH_TIMEOUT_SECONDS = 300
+SMS_OTP_TIMEOUT_SECONDS = 600
+
 
 # we are going to use a separate frontend so we don't need to use templates here
 TEMPLATES = [
@@ -172,6 +178,14 @@ SPECTACULAR_SETTINGS = {
     "VERSION": "1.0.0",
     "SERVE_INCLUDE_SCHEMA": False,
     "TAGS": [
+        {
+            "name": "auth",
+            "description": "Registration, login (email/phone/CNP), JWT refresh, logout",
+        },
+        {
+            "name": "2FA-auth",
+            "description": "SMS OTP (stub), TOTP authenticator, password reset, 2FA setup",
+        },
         {
             "name": "core",
             "description": "Core domain resources (catalog, profiles, reviews)",

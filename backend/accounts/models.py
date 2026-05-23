@@ -2,6 +2,9 @@ from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.db import models
 from encrypted_model_fields.fields import EncryptedCharField
 
+from .cnp_utils import compute_cnp_hash
+from .phone_utils import normalize_phone
+
 
 class UserManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):
@@ -28,11 +31,16 @@ class User(AbstractUser):
         CUSTOMER = "customer", "Customer"
         PROVIDER = "provider", "Provider"
 
+    class TwoFactorMethod(models.TextChoices):
+        SMS = "sms", "SMS OTP"
+        TOTP = "totp", "Authenticator app (TOTP)"
+
     username = None
     email = models.EmailField(unique=True)
     phone_number = models.CharField(max_length=32, blank=True)
     birth_date = models.DateField(null=True, blank=True)
     social_security_number = EncryptedCharField(max_length=32, blank=True)
+    cnp_lookup_hash = models.CharField(max_length=64, blank=True, db_index=True)
     role = models.CharField(
         max_length=20,
         choices=Role.choices,
@@ -43,11 +51,23 @@ class User(AbstractUser):
         blank=True,
         related_name="users",
     )
+    sms_2fa_enabled = models.BooleanField(default=False)
+    totp_secret = EncryptedCharField(max_length=64, blank=True)
+    totp_confirmed = models.BooleanField(default=False)
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ["first_name", "last_name"]
 
     objects = UserManager()
+
+    def save(self, *args, **kwargs):
+        if self.phone_number:
+            self.phone_number = normalize_phone(self.phone_number)
+        if self.social_security_number:
+            self.cnp_lookup_hash = compute_cnp_hash(self.social_security_number)
+        else:
+            self.cnp_lookup_hash = ""
+        super().save(*args, **kwargs)
 
     def __str__(self) -> str:
         return self.email
