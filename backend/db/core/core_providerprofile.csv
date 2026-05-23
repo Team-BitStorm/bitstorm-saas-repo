@@ -1,0 +1,39 @@
+id,user_id,display_name,bio,is_active,service_area_id,travel_radius_km
+1,45,Coafor — Laura Rusu,Specialist cu experiență în manichiură,True,45,3
+2,36,Maseur — Tudor Dumitru,Specialist cu experiență în epilare ceară,True,36,13
+3,43,Arhitect — Teodora Dumitru,Specialist cu experiență în extensii gene,True,43,13
+4,50,Fotograf — Florin Nistor,Specialist cu experiență în extensii gene,True,50,3
+5,44,Consultant IT — Tudor Luca,Specialist cu experiență în barbierit clasic,True,44,9
+6,18,Arhitect — Ana Dumitru,Specialist cu experiență în barbierit clasic,True,18,12
+7,13,Consultant IT — Mihai Neagu,Specialist cu experiență în epilare ceară,True,13,11
+8,34,Maseur — Daniel Popa,Specialist cu experiență în epilare ceară,True,34,8
+9,41,Psiholog — Ionuț Florescu,Specialist cu experiență în manichiură,True,41,2
+10,23,Consultant IT — Bianca Cojocaru,Specialist cu experiență în tuns și coafat,True,23,14
+11,25,Cosmetician — Cristian Cojocaru,Specialist cu experiență în epilare ceară,True,25,1
+12,31,Instructor fitness — Nicolae Neagu,Specialist cu experiență în masaj relaxant,True,31,2
+14,27,Avocat — Gabriel Luca,Specialist cu experiență în vopsit păr,True,27,9
+15,20,Instructor fitness — Cristina Bălan,Specialist cu experiență în tuns și coafat,True,20,14
+16,28,Cosmetician — Gabriela Stan,Specialist cu experiență în vopsit păr,True,28,14
+19,26,Instructor fitness — Sergiu Stan,Specialist cu experiență în tratament facial,True,26,14
+21,48,Maseur — Paula Matei,Specialist cu experiență în pedichiură,True,48,10
+22,9,Consultant IT — Carmen Constantin,Specialist cu experiență în manichiură,True,9,12
+23,2,Coafor — Sergiu Stan,Specialist cu experiență în tuns și coafat,True,2,7
+24,49,Contabil — Constantin Dumitru,Specialist cu experiență în epilare ceară,True,49,13
+25,32,Medic — Daniel Dima,Specialist cu experiență în manichiură,True,32,13
+26,33,Contabil — Carmen Matei,Specialist cu experiență în tratament facial,True,33,10
+28,35,Maseur — Raluca Ionescu,Specialist cu experiență în împletituri,True,35,12
+29,15,Fotograf — Cristian Bălan,Specialist cu experiență în masaj relaxant,True,15,8
+30,4,Contabil — Adrian Popescu,Specialist cu experiență în vopsit păr,True,4,14
+32,39,Fotograf — Ana Dumitru,Specialist cu experiență în tratament facial,True,39,7
+33,29,Fotograf — Cristina Matei,Specialist cu experiență în masaj relaxant,True,29,10
+34,19,Inginer — Paula Vlad,Specialist cu experiență în extensii gene,True,19,9
+36,24,Psiholog — Gabriel Stoica,Specialist cu experiență în extensii gene,True,24,9
+38,22,Avocat — Raluca Luca,Specialist cu experiență în tratament facial,True,22,10
+39,16,Maseur — Bianca Vlad,Specialist cu experiență în vopsit păr,True,16,7
+40,37,Arhitect — Andreea Stoica,Specialist cu experiență în barbierit clasic,True,37,12
+42,1,Contabil — Gabriela Popescu,Specialist cu experiență în epilare ceară,True,1,5
+43,21,Instructor fitness — Teodora Cojocaru,Specialist cu experiență în vopsit păr,True,21,6
+44,10,Psiholog — Mihaela Cojocaru,Specialist cu experiență în pedichiură,True,10,5
+47,5,Psiholog — Alexandru Gheorghe,Specialist cu experiență în tuns și coafat,True,5,6
+49,30,Consultant IT — Teodora Luca,Specialist cu experiență în vopsit păr,True,30,12
+50,17,Psiholog — Adrian Popescu,Specialist cu experiență în manichiură,True,17,13

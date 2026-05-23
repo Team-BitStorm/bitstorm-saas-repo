@@ -1,0 +1,51 @@
+id,name,slug,description,min_price,max_price,is_active,created_at,updated_at
+1,Masaj relaxant,masaj-relaxant-1,Serviciu profesional de masaj relaxant,254.86,254.86,True,2023-02-24 00:00:00,2023-02-24 00:00:00
+2,Manichiură,manichiur-2,Serviciu profesional de manichiură,225.24,225.24,True,2022-05-15 00:00:00,2022-05-15 00:00:00
+3,Pedichiură,pedichiur-3,Serviciu profesional de pedichiură,262.42,262.42,False,2023-10-09 00:00:00,2023-10-09 00:00:00
+4,Epilare ceară,epilare-cear-4,Serviciu profesional de epilare ceară,180.06,180.06,False,2023-01-13 00:00:00,2023-01-13 00:00:00
+5,Tratament facial,tratament-facial-5,Serviciu profesional de tratament facial,142.05,142.05,False,2022-07-09 00:00:00,2022-07-09 00:00:00
+6,Barbierit clasic,barbierit-clasic-6,Serviciu profesional de barbierit clasic,261.53,261.53,True,2022-07-16 00:00:00,2022-07-16 00:00:00
+7,Împletituri,mpletituri-7,Serviciu profesional de împletituri,380.25,380.25,True,2022-10-11 00:00:00,2022-10-11 00:00:00
+8,Vopsit păr,vopsit-p-r-8,Serviciu profesional de vopsit păr,207.89,207.89,True,2023-03-15 00:00:00,2023-03-15 00:00:00
+9,Extensii gene,extensii-gene-9,Serviciu profesional de extensii gene,396.67,396.67,False,2023-05-25 00:00:00,2023-05-25 00:00:00
+10,Microblading,microblading-10,Serviciu profesional de microblading,160.36,160.36,True,2022-10-09 00:00:00,2022-10-09 00:00:00
+11,Reflexoterapie,reflexoterapie-11,Serviciu profesional de reflexoterapie,281.75,281.75,False,2022-11-14 00:00:00,2022-11-14 00:00:00
+12,Yoga,yoga-12,Serviciu profesional de yoga,219.54,219.54,True,2023-04-05 00:00:00,2023-04-05 00:00:00
+13,Fitness personal,fitness-personal-13,Serviciu profesional de fitness personal,316.28,316.28,False,2023-12-29 00:00:00,2023-12-29 00:00:00
+14,Nutriție,nutri-ie-14,Serviciu profesional de nutriție,130.71,130.71,False,2022-06-14 00:00:00,2022-06-14 00:00:00
+15,Consultanță juridică,consultan-juridic-15,Serviciu profesional de consultanță juridică,481.92,481.92,False,2023-04-02 00:00:00,2023-04-02 00:00:00
+16,Contabilitate,contabilitate-16,Serviciu profesional de contabilitate,284.46,284.46,True,2022-07-13 00:00:00,2022-07-13 00:00:00
+17,Traduceri,traduceri-17,Serviciu profesional de traduceri,185.01,185.01,True,2022-09-12 00:00:00,2022-09-12 00:00:00
+18,Design grafic,design-grafic-18,Serviciu profesional de design grafic,343.64,343.64,False,2023-07-10 00:00:00,2023-07-10 00:00:00
+19,Fotografie,fotografie-19,Serviciu profesional de fotografie,390.6,390.6,True,2023-09-03 00:00:00,2023-09-03 00:00:00
+20,Tuns și coafat,tuns-i-coafat-20,Serviciu profesional de tuns și coafat,176.25,176.25,False,2023-12-02 00:00:00,2023-12-02 00:00:00
+21,Masaj relaxant,masaj-relaxant-21,Serviciu profesional de masaj relaxant,402.55,402.55,False,2023-03-21 00:00:00,2023-03-21 00:00:00
+22,Manichiură,manichiur-22,Serviciu profesional de manichiură,384.42,384.42,True,2023-04-25 00:00:00,2023-04-25 00:00:00
+23,Pedichiură,pedichiur-23,Serviciu profesional de pedichiură,288.27,288.27,True,2022-02-13 00:00:00,2022-02-13 00:00:00
+24,Epilare ceară,epilare-cear-24,Serviciu profesional de epilare ceară,332.67,332.67,True,2022-11-13 00:00:00,2022-11-13 00:00:00
+25,Tratament facial,tratament-facial-25,Serviciu profesional de tratament facial,422.93,422.93,False,2023-08-09 00:00:00,2023-08-09 00:00:00
+26,Barbierit clasic,barbierit-clasic-26,Serviciu profesional de barbierit clasic,483.7,483.7,False,2022-04-04 00:00:00,2022-04-04 00:00:00
+27,Împletituri,mpletituri-27,Serviciu profesional de împletituri,121.06,121.06,False,2022-03-01 00:00:00,2022-03-01 00:00:00
+28,Vopsit păr,vopsit-p-r-28,Serviciu profesional de vopsit păr,374.11,374.11,True,2022-03-03 00:00:00,2022-03-03 00:00:00
+29,Extensii gene,extensii-gene-29,Serviciu profesional de extensii gene,133.26,133.26,False,2022-05-15 00:00:00,2022-05-15 00:00:00
+30,Microblading,microblading-30,Serviciu profesional de microblading,116.55,116.55,False,2023-04-11 00:00:00,2023-04-11 00:00:00
+31,Reflexoterapie,reflexoterapie-31,Serviciu profesional de reflexoterapie,189.84,189.84,True,2022-01-02 00:00:00,2022-01-02 00:00:00
+32,Yoga,yoga-32,Serviciu profesional de yoga,59.12,59.12,True,2022-08-20 00:00:00,2022-08-20 00:00:00
+33,Fitness personal,fitness-personal-33,Serviciu profesional de fitness personal,57.83,57.83,True,2023-06-19 00:00:00,2023-06-19 00:00:00
+34,Nutriție,nutri-ie-34,Serviciu profesional de nutriție,176.16,176.16,True,2023-06-08 00:00:00,2023-06-08 00:00:00
+35,Consultanță juridică,consultan-juridic-35,Serviciu profesional de consultanță juridică,488.87,488.87,False,2023-08-09 00:00:00,2023-08-09 00:00:00
+36,Contabilitate,contabilitate-36,Serviciu profesional de contabilitate,156.34,156.34,False,2022-03-19 00:00:00,2022-03-19 00:00:00
+37,Traduceri,traduceri-37,Serviciu profesional de traduceri,390.15,390.15,False,2023-02-21 00:00:00,2023-02-21 00:00:00
+38,Design grafic,design-grafic-38,Serviciu profesional de design grafic,339.89,339.89,True,2023-02-04 00:00:00,2023-02-04 00:00:00
+39,Fotografie,fotografie-39,Serviciu profesional de fotografie,212.72,212.72,True,2022-05-11 00:00:00,2022-05-11 00:00:00
+40,Tuns și coafat,tuns-i-coafat-40,Serviciu profesional de tuns și coafat,373.04,373.04,False,2022-06-24 00:00:00,2022-06-24 00:00:00
+41,Masaj relaxant,masaj-relaxant-41,Serviciu profesional de masaj relaxant,210.81,210.81,False,2022-03-20 00:00:00,2022-03-20 00:00:00
+42,Manichiură,manichiur-42,Serviciu profesional de manichiură,146.68,146.68,False,2023-01-22 00:00:00,2023-01-22 00:00:00
+43,Pedichiură,pedichiur-43,Serviciu profesional de pedichiură,250.83,250.83,False,2022-10-09 00:00:00,2022-10-09 00:00:00
+44,Epilare ceară,epilare-cear-44,Serviciu profesional de epilare ceară,115.85,115.85,True,2023-05-26 00:00:00,2023-05-26 00:00:00
+45,Tratament facial,tratament-facial-45,Serviciu profesional de tratament facial,260.99,260.99,False,2022-04-14 00:00:00,2022-04-14 00:00:00
+46,Barbierit clasic,barbierit-clasic-46,Serviciu profesional de barbierit clasic,406.21,406.21,True,2022-12-04 00:00:00,2022-12-04 00:00:00
+47,Împletituri,mpletituri-47,Serviciu profesional de împletituri,209.77,209.77,True,2022-01-02 00:00:00,2022-01-02 00:00:00
+48,Vopsit păr,vopsit-p-r-48,Serviciu profesional de vopsit păr,114.42,114.42,False,2022-05-21 00:00:00,2022-05-21 00:00:00
+49,Extensii gene,extensii-gene-49,Serviciu profesional de extensii gene,412.73,412.73,True,2022-08-20 00:00:00,2022-08-20 00:00:00
+50,Microblading,microblading-50,Serviciu profesional de microblading,267.95,267.95,True,2022-05-24 00:00:00,2022-05-24 00:00:00
