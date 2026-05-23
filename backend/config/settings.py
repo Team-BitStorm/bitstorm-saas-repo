@@ -24,7 +24,7 @@ SECRET_KEY = os.environ.get("DJANGOSECRET")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", "https://bitstorm-saas-repo.onrender.com"]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", "bitstorm-saas-repo.onrender.com"]
 
 
 # Application definition
