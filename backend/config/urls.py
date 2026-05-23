@@ -27,6 +27,7 @@ urlpatterns = [
     path("", RedirectView.as_view(url="/api/docs/", permanent=False)),
     path("api/auth/", include("accounts.urls")),
     path("api/core/", include("core.urls")),
+    path("api/", include("core.urls_marketplace")),
     path("admin/", admin.site.urls),
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
     path(

@@ -75,6 +75,7 @@ class ProviderProfileSerializer(serializers.ModelSerializer):
             "display_name",
             "bio",
             "service_area",
+            "travel_radius_km",
             "is_active",
         )
 
@@ -101,7 +102,15 @@ class ServiceProviderSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ServiceProvider
-        fields = ("id", "provider", "service", "created_at")
+        fields = (
+            "id",
+            "provider",
+            "service",
+            "provider_price",
+            "duration_minutes",
+            "created_at",
+            "updated_at",
+        )
 
 
 class UserReviewSerializer(serializers.ModelSerializer):
