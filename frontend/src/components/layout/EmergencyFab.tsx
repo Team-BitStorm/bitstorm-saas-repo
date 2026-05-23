@@ -1,9 +1,12 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useRouterState } from "@tanstack/react-router";
 import { PhoneCall } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 export function EmergencyFab() {
   const { t } = useTranslation();
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  if (pathname === "/emergency") return null;
+
   return (
     <Link
       to="/emergency"
