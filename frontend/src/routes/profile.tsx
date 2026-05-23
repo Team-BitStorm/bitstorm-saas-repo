@@ -3,10 +3,10 @@ import { LogOut, User } from "lucide-react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
+import { SecuritySettings } from "@/components/auth/SecuritySettings";
 import { Button } from "@/components/ui/button";
-import { logout } from "@/lib/auth";
+import { getRoleHome, logout } from "@/lib/auth";
 import { useAuth } from "@/lib/auth-context";
-import { usePatient } from "@/lib/patient-context";
 
 export const Route = createFileRoute("/profile")({
   component: ProfilePage,
@@ -15,9 +15,10 @@ export const Route = createFileRoute("/profile")({
 function ProfilePage() {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const { patient: p } = usePatient();
-  const { signOut } = useAuth();
+  const { user, signOut } = useAuth();
   const [isSigningOut, setIsSigningOut] = useState(false);
+
+  if (!user) return null;
 
   async function handleSignOut() {
     setIsSigningOut(true);
@@ -38,33 +39,34 @@ function ProfilePage() {
         </div>
         <div>
           <h1 className="font-display text-4xl">
-            {p.firstName} {p.lastName}
+            {user.first_name} {user.last_name}
           </h1>
-          <p className="text-base text-muted-foreground">
-            {t("profile.born", { dob: p.dob, blood: p.bloodType })}
-          </p>
+          <p className="text-base text-muted-foreground">{user.email}</p>
+          <p className="text-sm text-muted-foreground capitalize">{user.role}</p>
         </div>
       </header>
 
-      <section aria-labelledby="allergies-h">
-        <h2 id="allergies-h" className="font-display text-2xl mb-3">
-          {t("profile.allergies")}
-        </h2>
-        <div className="flex flex-wrap gap-2">
-          {p.allergies.map((a) => (
-            <span
-              key={a}
-              className="inline-flex items-center rounded-full bg-destructive/15 border-2 border-destructive/40 px-4 py-2 text-base font-bold text-destructive"
-            >
-              ⚠ {a}
-            </span>
-          ))}
-        </div>
-      </section>
+      {user.role === "customer" ? (
+        <Button
+          type="button"
+          variant="outline"
+          onClick={() => void navigate({ to: "/onboarding" })}
+          className="min-h-14 rounded-full border-2 w-full"
+        >
+          {t("customer.editProfile")}
+        </Button>
+      ) : (
+        <Button
+          type="button"
+          variant="outline"
+          onClick={() => void navigate({ to: "/provider/onboarding" })}
+          className="min-h-14 rounded-full border-2 w-full"
+        >
+          {t("provider.editProfile")}
+        </Button>
+      )}
 
-      <div className="rounded-3xl border-2 border-dashed border-border p-6 text-center text-muted-foreground">
-        {t("profile.comingNext")}
-      </div>
+      <SecuritySettings />
 
       <Button
         type="button"
@@ -75,6 +77,15 @@ function ProfilePage() {
       >
         <LogOut aria-hidden="true" className="size-5" />
         {isSigningOut ? t("profile.signingOut") : t("profile.signOut")}
+      </Button>
+
+      <Button
+        type="button"
+        variant="ghost"
+        onClick={() => void navigate({ to: getRoleHome(user.role) })}
+        className="w-full min-h-12"
+      >
+        {t("common.backHome")}
       </Button>
     </div>
   );

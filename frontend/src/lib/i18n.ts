@@ -32,7 +32,7 @@ if (!i18n.isInitialized) {
       interpolation: { escapeValue: false },
       detection: {
         order: ["localStorage", "navigator"],
-        lookupLocalStorage: "carepath-lang",
+        lookupLocalStorage: "bithealth-lang",
         caches: ["localStorage"],
       },
       react: { useSuspense: false },

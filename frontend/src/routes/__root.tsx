@@ -10,8 +10,9 @@ import {
 import { AuthGate } from "@/components/auth/AuthGate";
 import { AppShell } from "@/components/layout/AppShell";
 import { isAuthPublicPath } from "@/lib/auth";
+import { AccessibilityProvider } from "@/lib/accessibility-context";
 import { AuthProvider } from "@/lib/auth-context";
-import { PatientProvider } from "@/lib/patient-context";
+import { ThemeProvider } from "@/lib/theme-context";
 
 function NotFoundComponent() {
   return (
@@ -77,13 +78,15 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   return (
     <QueryClientProvider client={queryClient}>
-      <AuthProvider>
-        <AuthGate>
-          <PatientProvider>
-            <RootShell />
-          </PatientProvider>
-        </AuthGate>
-      </AuthProvider>
+      <ThemeProvider>
+        <AccessibilityProvider>
+          <AuthProvider>
+            <AuthGate>
+              <RootShell />
+            </AuthGate>
+          </AuthProvider>
+        </AccessibilityProvider>
+      </ThemeProvider>
     </QueryClientProvider>
   );
 }

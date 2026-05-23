@@ -1,11 +1,14 @@
 import { useNavigate, useRouterState } from "@tanstack/react-router";
 import * as React from "react";
 
-import { isAuthPublicPath } from "@/lib/auth";
+import { getRoleHome, isAuthPublicPath } from "@/lib/auth";
 import { useAuth } from "@/lib/auth-context";
 
+const PROVIDER_PREFIX = "/provider";
+const CUSTOMER_ONBOARDING = "/onboarding";
+
 export function AuthGate({ children }: { children: React.ReactNode }) {
-  const { isAuthenticated, isLoading } = useAuth();
+  const { user, isAuthenticated, isLoading } = useAuth();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const navigate = useNavigate();
 
@@ -21,9 +24,28 @@ export function AuthGate({ children }: { children: React.ReactNode }) {
     }
 
     if (isAuthenticated && isAuthPublicPath(pathname)) {
+      void navigate({ to: getRoleHome(user!.role) });
+      return;
+    }
+
+    if (!isAuthenticated || !user) return;
+
+    const isProviderRoute = pathname.startsWith(PROVIDER_PREFIX);
+    const isCustomerRoute =
+      pathname === "/" ||
+      pathname.startsWith("/bookings") ||
+      pathname.startsWith("/providers") ||
+      pathname === CUSTOMER_ONBOARDING;
+
+    if (user.role === "provider" && isCustomerRoute && pathname !== "/profile") {
+      void navigate({ to: "/provider" });
+      return;
+    }
+
+    if (user.role === "customer" && isProviderRoute) {
       void navigate({ to: "/" });
     }
-  }, [isAuthenticated, isLoading, pathname, navigate]);
+  }, [isAuthenticated, isLoading, pathname, navigate, user]);
 
   if (isLoading) {
     return (
