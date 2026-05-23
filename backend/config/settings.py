@@ -170,7 +170,9 @@ SPECTACULAR_SETTINGS = {
     "DESCRIPTION": "SaaS backend API",
     "VERSION": "1.0.0",
     "SERVE_INCLUDE_SCHEMA": False,
-    # 🔑 THIS is what enables JWT auth in Swagger UI
+    # Separate request-body editors per content type in Swagger UI
+    "COMPONENT_SPLIT_REQUEST": True,
+    #  THIS is what enables JWT auth in Swagger UI
     "SECURITY": [{"BearerAuth": []}],
     "COMPONENTS": {
         "securitySchemes": {

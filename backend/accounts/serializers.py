@@ -39,7 +39,12 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         password = validated_data.pop("password")
-        return User.objects.create_user(password=password, **validated_data)
+        email = validated_data.pop("email")
+        return User.objects.create_user(email, password, **validated_data)
+
+
+class RefreshTokenSerializer(serializers.Serializer):
+    refresh = serializers.CharField()
 
 
 class EmailTokenObtainPairSerializer(TokenObtainPairSerializer):
