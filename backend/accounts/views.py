@@ -8,9 +8,11 @@ from rest_framework_simplejwt.exceptions import TokenError
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
-from .openapi import json_and_form_request
+from .openapi import auth_schema
 from .serializers import (
-    EmailTokenObtainPairSerializer,
+    DetailResponseSerializer,
+    LoginResponseSerializer,
+    LoginSerializer,
     RefreshTokenSerializer,
     RegisterSerializer,
     UserSerializer,
@@ -23,25 +25,34 @@ class FormJsonParserMixin:
     parser_classes = [JSONParser, FormParser]
 
 
-@json_and_form_request(RegisterSerializer)
+@auth_schema(request=RegisterSerializer, summary="Register a new user")
 class RegisterView(FormJsonParserMixin, generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = RegisterSerializer
     permission_classes = [permissions.AllowAny]
 
 
-@json_and_form_request(EmailTokenObtainPairSerializer)
+@auth_schema(
+    request=LoginSerializer,
+    responses={200: LoginResponseSerializer},
+    summary="Login with email, phone, or CNP (returns JWT or 2FA challenge)",
+)
 class LoginView(FormJsonParserMixin, TokenObtainPairView):
-    serializer_class = EmailTokenObtainPairSerializer
+    serializer_class = LoginSerializer
 
 
-@json_and_form_request(TokenRefreshSerializer)
+@auth_schema(request=TokenRefreshSerializer, summary="Refresh access token")
 class RefreshView(FormJsonParserMixin, TokenRefreshView):
-    pass
+    serializer_class = TokenRefreshSerializer
 
 
-@json_and_form_request(RefreshTokenSerializer)
+@auth_schema(
+    request=RefreshTokenSerializer,
+    responses={200: DetailResponseSerializer},
+    summary="Logout (blacklist refresh token)",
+)
 class LogoutView(FormJsonParserMixin, APIView):
+    serializer_class = RefreshTokenSerializer
     # Logout is authorized by the refresh token, not the (possibly expired) access token.
     permission_classes = [permissions.AllowAny]
 
@@ -68,7 +79,7 @@ class LogoutView(FormJsonParserMixin, APIView):
         )
 
 
-# for the current-logged user. maybe this calls for a rename
+@auth_schema(responses={200: UserSerializer}, summary="Current authenticated user")
 class MeView(generics.RetrieveAPIView):
     serializer_class = UserSerializer
     permission_classes = [permissions.IsAuthenticated]

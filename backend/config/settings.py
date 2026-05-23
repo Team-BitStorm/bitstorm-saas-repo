@@ -68,11 +68,13 @@ MIDDLEWARE = [
 ROOT_URLCONF = "config.urls"
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",  # TODO: change this once we know frontend port and once we deploy frontend on Render
+    "http://localhost:5173",
+    "https://bitstorm-saas-repo-1.onrender.com",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:5173",  # this is for cookie storage and recognition by django backend
+    "https://bitstorm-saas-repo-1.onrender.com",
 ]
 
 CORS_ALLOW_CREDENTIALS = True
@@ -86,12 +88,18 @@ REST_FRAMEWORK = {
 
 
 SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=15),
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=300),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=30),
     "ROTATE_REFRESH_TOKENS": True,
     "BLACKLIST_AFTER_ROTATION": True,
     "AUTH_HEADER_TYPES": ("Bearer",),
 }
+
+# Two-factor (TOTP + stub SMS)
+TOTP_ISSUER = "BitHealth"
+SMS_OTP_STUB_EXPOSE = True  # Return otp_code in API instead of sending SMS
+PRE_AUTH_TIMEOUT_SECONDS = 300
+SMS_OTP_TIMEOUT_SECONDS = 600
 
 
 # we are going to use a separate frontend so we don't need to use templates here
@@ -177,8 +185,32 @@ SPECTACULAR_SETTINGS = {
     "SERVE_INCLUDE_SCHEMA": False,
     "TAGS": [
         {
+            "name": "auth",
+            "description": "Registration, login (email/phone/CNP), JWT refresh, logout",
+        },
+        {
+            "name": "2FA-auth",
+            "description": "SMS OTP (stub), TOTP authenticator, password reset, 2FA setup",
+        },
+        {
             "name": "core",
             "description": "Core domain resources (catalog, profiles, reviews)",
+        },
+        {
+            "name": "me",
+            "description": "Authenticated user profile and location onboarding",
+        },
+        {
+            "name": "provider",
+            "description": "Provider offerings, availability, bookings, invoices",
+        },
+        {
+            "name": "customer",
+            "description": "Customer availability, bookings, invoices, payments",
+        },
+        {
+            "name": "marketplace",
+            "description": "Public provider discovery and open slot search",
         },
     ],
     # Separate request-body editors per content type in Swagger UI
