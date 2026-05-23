@@ -196,6 +196,22 @@ SPECTACULAR_SETTINGS = {
             "name": "core",
             "description": "Core domain resources (catalog, profiles, reviews)",
         },
+        {
+            "name": "me",
+            "description": "Authenticated user profile and location onboarding",
+        },
+        {
+            "name": "provider",
+            "description": "Provider offerings, availability, bookings, invoices",
+        },
+        {
+            "name": "customer",
+            "description": "Customer availability, bookings, invoices, payments",
+        },
+        {
+            "name": "marketplace",
+            "description": "Public provider discovery and open slot search",
+        },
     ],
     # Separate request-body editors per content type in Swagger UI
     "COMPONENT_SPLIT_REQUEST": True,
