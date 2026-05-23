@@ -1,0 +1,7 @@
+id,app_label,model
+1,accounts,user
+2,auth,group
+3,admin,logentry
+4,auth,permission
+5,contenttypes,contenttype
+6,sessions,session

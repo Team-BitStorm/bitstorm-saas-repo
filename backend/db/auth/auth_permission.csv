@@ -1,0 +1,17 @@
+id,name,content_type_id,codename
+1,Can add user,1,add_user
+2,Can change user,1,change_user
+3,Can delete user,1,delete_user
+4,Can view user,1,view_user
+5,Can add group,2,add_group
+6,Can change group,2,change_group
+7,Can delete group,2,delete_group
+8,Can view group,2,view_group
+9,Can add logentry,3,add_logentry
+10,Can change logentry,3,change_logentry
+11,Can delete logentry,3,delete_logentry
+12,Can view logentry,3,view_logentry
+13,Can add permission,4,add_permission
+14,Can change permission,4,change_permission
+15,Can delete permission,4,delete_permission
+16,Can view permission,4,view_permission

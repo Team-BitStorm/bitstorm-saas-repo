@@ -1,0 +1,9 @@
+id,user_id,permission_codename,content_type_app,content_type_model
+1,1,add_user,accounts,user
+2,1,change_user,accounts,user
+3,1,delete_user,accounts,user
+4,1,view_user,accounts,user
+5,1,add_group,accounts,user
+6,1,change_group,accounts,user
+7,1,delete_group,accounts,user
+8,1,view_group,accounts,user
