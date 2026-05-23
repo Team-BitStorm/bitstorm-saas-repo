@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ["localhost", "127.0.0.1", "bitstorm-saas-repo.onrender.com"]
 
 INSTALLED_APPS = [
     "authentication",  # this has to be here because it is a mini app inside of Django and we need to define here
+    "rest_framework",  # this is the Django DRF that we will use as the API layer
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
