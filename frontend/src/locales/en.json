@@ -1,0 +1,108 @@
+{
+  "app": {
+    "name": "CarePath",
+    "tagline": "Your care, made simple"
+  },
+  "nav": {
+    "home": "Home",
+    "meds": "Meds",
+    "feel": "How I feel",
+    "calendar": "Calendar",
+    "profile": "Profile"
+  },
+  "common": {
+    "back": "Back",
+    "backHome": "Back to home",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "language": "Language",
+    "chooseLanguage": "Choose language"
+  },
+  "emergency": {
+    "fab": "Help",
+    "fabAria": "Call for help — emergency",
+    "title": "Call for help?",
+    "subtitle": "This will call {{name}} right now.",
+    "callerInfo": "{{relation}} · {{phone}}",
+    "yesCall": "Yes, call now",
+    "no": "No, cancel",
+    "calling": "Calling {{name}}…",
+    "stayCalm": "Stay calm. Help is on the way.",
+    "openDialer": "Open phone dialer",
+    "metaTitle": "Call for help — CarePath",
+    "metaDesc": "Emergency contact your caregiver."
+  },
+  "dashboard": {
+    "greetingMorning": "Good morning",
+    "greetingAfternoon": "Good afternoon",
+    "greetingEvening": "Good evening",
+    "whatToDo": "What would you like to do?",
+    "medsTile": "My Medications",
+    "medsToday": "{{count}} today",
+    "apptsTile": "My Appointments",
+    "nextWith": "Next: {{doctor}}",
+    "feelTile": "How I Feel Today",
+    "emergencyTile": "Call for Help",
+    "emergencyTileDesc": "Reach a caregiver fast",
+    "profileTile": "My Profile",
+    "medDueTitle": "{{name}} due at {{time}}",
+    "medDueDetail": "Tap My Medications to mark it as taken."
+  },
+  "meds": {
+    "title": "My Medications",
+    "subtitle": "Tap “I took it” after each dose.",
+    "morning": "Morning",
+    "afternoon": "Afternoon",
+    "night": "Night",
+    "taken": "Taken",
+    "iTookIt": "I took it",
+    "markTaken": "I took {{name}}",
+    "markNotTaken": "Mark {{name}} as not taken",
+    "metaTitle": "My Medications — CarePath",
+    "metaDesc": "Your daily medications, easy to track."
+  },
+  "feel": {
+    "title": "How do you feel today?",
+    "subtitle": "Pick any that match. There are no wrong answers.",
+    "symptomsHeading": "Your symptoms",
+    "painHeading": "Any pain?",
+    "send": "Send to my caregiver",
+    "thanks": "Thank you",
+    "notified": "Your caregiver has been notified.",
+    "noPain": "No pain",
+    "worstPain": "Worst pain",
+    "painLevel": "Pain level: {{value}} / 10",
+    "painLevelAria": "Pain level from 1 to 10",
+    "painLevelN": "Pain level {{n}}",
+    "groupAria": "How do you feel?",
+    "metaTitle": "How I Feel Today — CarePath",
+    "metaDesc": "Tell your caregiver how you feel.",
+    "symptoms": {
+      "okay": "Okay",
+      "happy": "Happy",
+      "tired": "Tired",
+      "pain": "In pain",
+      "dizzy": "Dizzy",
+      "nauseous": "Nauseous",
+      "sad": "Sad",
+      "confused": "Confused"
+    }
+  },
+  "calendar": {
+    "title": "My Appointments",
+    "subtitle": "Upcoming visits and calls.",
+    "comingNext": "Monthly calendar and home-visit requests — coming next.",
+    "metaTitle": "My Appointments — CarePath"
+  },
+  "caregiver": {
+    "title": "Caregiver View",
+    "subtitle": "Vitals, recent activity, and notes — coming next.",
+    "metaTitle": "Caregiver View — CarePath"
+  },
+  "profile": {
+    "born": "Born {{dob}} · Blood type {{blood}}",
+    "allergies": "Allergies",
+    "comingNext": "Full medical history and caregiver details — coming next.",
+    "metaTitle": "My Profile — CarePath"
+  }
+}

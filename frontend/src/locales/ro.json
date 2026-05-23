@@ -1,0 +1,108 @@
+{
+  "app": {
+    "name": "CarePath",
+    "tagline": "Îngrijirea ta, simplificată"
+  },
+  "nav": {
+    "home": "Acasă",
+    "meds": "Medicamente",
+    "feel": "Cum mă simt",
+    "calendar": "Calendar",
+    "profile": "Profil"
+  },
+  "common": {
+    "back": "Înapoi",
+    "backHome": "Înapoi acasă",
+    "cancel": "Anulează",
+    "confirm": "Confirmă",
+    "language": "Limbă",
+    "chooseLanguage": "Alege limba"
+  },
+  "emergency": {
+    "fab": "Ajutor",
+    "fabAria": "Sună după ajutor — urgență",
+    "title": "Sun după ajutor?",
+    "subtitle": "Acum va fi sunat(ă) {{name}}.",
+    "callerInfo": "{{relation}} · {{phone}}",
+    "yesCall": "Da, sună acum",
+    "no": "Nu, anulează",
+    "calling": "Se sună {{name}}…",
+    "stayCalm": "Stai calm. Ajutorul este pe drum.",
+    "openDialer": "Deschide telefonul",
+    "metaTitle": "Sună după ajutor — CarePath",
+    "metaDesc": "Contactează-ți îngrijitorul în caz de urgență."
+  },
+  "dashboard": {
+    "greetingMorning": "Bună dimineața",
+    "greetingAfternoon": "Bună ziua",
+    "greetingEvening": "Bună seara",
+    "whatToDo": "Ce ai vrea să faci?",
+    "medsTile": "Medicamentele mele",
+    "medsToday": "{{count}} astăzi",
+    "apptsTile": "Programările mele",
+    "nextWith": "Următoarea: {{doctor}}",
+    "feelTile": "Cum mă simt astăzi",
+    "emergencyTile": "Sună după ajutor",
+    "emergencyTileDesc": "Contactează rapid un îngrijitor",
+    "profileTile": "Profilul meu",
+    "medDueTitle": "{{name}} la ora {{time}}",
+    "medDueDetail": "Apasă pe Medicamentele mele pentru a marca."
+  },
+  "meds": {
+    "title": "Medicamentele mele",
+    "subtitle": "Apasă „Am luat-o” după fiecare doză.",
+    "morning": "Dimineață",
+    "afternoon": "După-amiază",
+    "night": "Seară",
+    "taken": "Luată",
+    "iTookIt": "Am luat-o",
+    "markTaken": "Am luat {{name}}",
+    "markNotTaken": "Marchează {{name}} ca neluată",
+    "metaTitle": "Medicamentele mele — CarePath",
+    "metaDesc": "Medicamentele tale zilnice, ușor de urmărit."
+  },
+  "feel": {
+    "title": "Cum te simți astăzi?",
+    "subtitle": "Alege ce ți se potrivește. Nu există răspunsuri greșite.",
+    "symptomsHeading": "Simptomele tale",
+    "painHeading": "Ai dureri?",
+    "send": "Trimite către îngrijitor",
+    "thanks": "Mulțumim",
+    "notified": "Îngrijitorul tău a fost anunțat.",
+    "noPain": "Fără durere",
+    "worstPain": "Durere maximă",
+    "painLevel": "Nivel de durere: {{value}} / 10",
+    "painLevelAria": "Nivel de durere de la 1 la 10",
+    "painLevelN": "Nivel de durere {{n}}",
+    "groupAria": "Cum te simți?",
+    "metaTitle": "Cum mă simt astăzi — CarePath",
+    "metaDesc": "Spune-i îngrijitorului cum te simți.",
+    "symptoms": {
+      "okay": "Bine",
+      "happy": "Fericit",
+      "tired": "Obosit",
+      "pain": "Cu durere",
+      "dizzy": "Amețit",
+      "nauseous": "Greață",
+      "sad": "Trist",
+      "confused": "Confuz"
+    }
+  },
+  "calendar": {
+    "title": "Programările mele",
+    "subtitle": "Vizite și apeluri viitoare.",
+    "comingNext": "Calendar lunar și cereri de vizită la domiciliu — în curând.",
+    "metaTitle": "Programările mele — CarePath"
+  },
+  "caregiver": {
+    "title": "Vedere îngrijitor",
+    "subtitle": "Semne vitale, activitate recentă și notițe — în curând.",
+    "metaTitle": "Îngrijitor — CarePath"
+  },
+  "profile": {
+    "born": "Născut(ă) {{dob}} · Grupa de sânge {{blood}}",
+    "allergies": "Alergii",
+    "comingNext": "Istoric medical complet și detalii îngrijitor — în curând.",
+    "metaTitle": "Profilul meu — CarePath"
+  }
+}

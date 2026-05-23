@@ -1,0 +1,108 @@
+{
+  "app": {
+    "name": "CarePath",
+    "tagline": "Ihre Pflege, einfach gemacht"
+  },
+  "nav": {
+    "home": "Start",
+    "meds": "Medikamente",
+    "feel": "Mein Befinden",
+    "calendar": "Kalender",
+    "profile": "Profil"
+  },
+  "common": {
+    "back": "Zurück",
+    "backHome": "Zurück zur Startseite",
+    "cancel": "Abbrechen",
+    "confirm": "Bestätigen",
+    "language": "Sprache",
+    "chooseLanguage": "Sprache wählen"
+  },
+  "emergency": {
+    "fab": "Hilfe",
+    "fabAria": "Hilfe rufen — Notfall",
+    "title": "Hilfe rufen?",
+    "subtitle": "Es wird jetzt {{name}} angerufen.",
+    "callerInfo": "{{relation}} · {{phone}}",
+    "yesCall": "Ja, jetzt anrufen",
+    "no": "Nein, abbrechen",
+    "calling": "Anruf läuft: {{name}}…",
+    "stayCalm": "Bleiben Sie ruhig. Hilfe ist unterwegs.",
+    "openDialer": "Telefon öffnen",
+    "metaTitle": "Hilfe rufen — CarePath",
+    "metaDesc": "Notfallkontakt zu Ihrer Pflegekraft."
+  },
+  "dashboard": {
+    "greetingMorning": "Guten Morgen",
+    "greetingAfternoon": "Guten Tag",
+    "greetingEvening": "Guten Abend",
+    "whatToDo": "Was möchten Sie tun?",
+    "medsTile": "Meine Medikamente",
+    "medsToday": "{{count}} heute",
+    "apptsTile": "Meine Termine",
+    "nextWith": "Nächster: {{doctor}}",
+    "feelTile": "Mein Befinden heute",
+    "emergencyTile": "Hilfe rufen",
+    "emergencyTileDesc": "Pflegekraft schnell erreichen",
+    "profileTile": "Mein Profil",
+    "medDueTitle": "{{name}} fällig um {{time}}",
+    "medDueDetail": "Tippen Sie auf Meine Medikamente, um zu markieren."
+  },
+  "meds": {
+    "title": "Meine Medikamente",
+    "subtitle": "Tippen Sie nach jeder Dosis auf „Eingenommen“.",
+    "morning": "Morgen",
+    "afternoon": "Nachmittag",
+    "night": "Abend",
+    "taken": "Eingenommen",
+    "iTookIt": "Eingenommen",
+    "markTaken": "{{name}} eingenommen",
+    "markNotTaken": "{{name}} als nicht eingenommen markieren",
+    "metaTitle": "Meine Medikamente — CarePath",
+    "metaDesc": "Ihre täglichen Medikamente, leicht zu verfolgen."
+  },
+  "feel": {
+    "title": "Wie fühlen Sie sich heute?",
+    "subtitle": "Wählen Sie aus, was passt. Es gibt keine falschen Antworten.",
+    "symptomsHeading": "Ihre Symptome",
+    "painHeading": "Haben Sie Schmerzen?",
+    "send": "An Pflegekraft senden",
+    "thanks": "Danke",
+    "notified": "Ihre Pflegekraft wurde benachrichtigt.",
+    "noPain": "Keine Schmerzen",
+    "worstPain": "Stärkste Schmerzen",
+    "painLevel": "Schmerzlevel: {{value}} / 10",
+    "painLevelAria": "Schmerzlevel von 1 bis 10",
+    "painLevelN": "Schmerzlevel {{n}}",
+    "groupAria": "Wie fühlen Sie sich?",
+    "metaTitle": "Mein Befinden heute — CarePath",
+    "metaDesc": "Sagen Sie Ihrer Pflegekraft, wie Sie sich fühlen.",
+    "symptoms": {
+      "okay": "Okay",
+      "happy": "Glücklich",
+      "tired": "Müde",
+      "pain": "Schmerzen",
+      "dizzy": "Schwindelig",
+      "nauseous": "Übel",
+      "sad": "Traurig",
+      "confused": "Verwirrt"
+    }
+  },
+  "calendar": {
+    "title": "Meine Termine",
+    "subtitle": "Kommende Besuche und Anrufe.",
+    "comingNext": "Monatskalender und Hausbesuchsanfragen — folgt bald.",
+    "metaTitle": "Meine Termine — CarePath"
+  },
+  "caregiver": {
+    "title": "Pflegekraft-Ansicht",
+    "subtitle": "Vitalwerte, letzte Aktivität und Notizen — folgt bald.",
+    "metaTitle": "Pflegekraft — CarePath"
+  },
+  "profile": {
+    "born": "Geboren {{dob}} · Blutgruppe {{blood}}",
+    "allergies": "Allergien",
+    "comingNext": "Vollständige Krankengeschichte und Pflegerdaten — folgt bald.",
+    "metaTitle": "Mein Profil — CarePath"
+  }
+}
