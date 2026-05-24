@@ -1,31 +1,31 @@
 id,user_id,avatar_url,bio,home_location_id
-1,38,,Utilizator interesat de barbierit clasic,7
-2,47,,Utilizator interesat de tuns și coafat,36
-3,21,,Utilizator interesat de epilare ceară,26
-4,31,,Utilizator interesat de tratament facial,39
-5,28,,Utilizator interesat de tuns și coafat,1
-6,8,,Utilizator interesat de epilare ceară,5
-7,45,,Utilizator interesat de masaj relaxant,36
-8,48,,Utilizator interesat de barbierit clasic,1
-9,29,,Utilizator interesat de pedichiură,7
-10,44,,Utilizator interesat de barbierit clasic,13
-11,25,,Utilizator interesat de pedichiură,11
-12,13,,Utilizator interesat de pedichiură,3
-14,19,,Utilizator interesat de împletituri,3
-15,7,,Utilizator interesat de tratament facial,39
-16,36,,Utilizator interesat de împletituri,13
-17,6,,Utilizator interesat de împletituri,3
-18,20,,Utilizator interesat de manichiură,13
-19,33,,Utilizator interesat de epilare ceară,13
-20,14,,Utilizator interesat de împletituri,3
-22,39,,Utilizator interesat de masaj relaxant,39
-23,16,,Utilizator interesat de masaj relaxant,12
-25,49,,Utilizator interesat de împletituri,1
-28,15,,Utilizator interesat de tratament facial,7
-29,32,,Utilizator interesat de împletituri,5
-30,30,,Utilizator interesat de epilare ceară,1
-33,22,,Utilizator interesat de manichiură,14
-37,5,,Utilizator interesat de tratament facial,36
-39,46,,Utilizator interesat de masaj relaxant,4
-41,26,,Utilizator interesat de tuns și coafat,4
-47,23,,Utilizator interesat de barbierit clasic,11
+1,38,,"Pacient interesat de consultații de medicină generală și controale periodice.",7
+2,47,,"Pacient interesat de consultații pediatrice pentru cei mici.",36
+3,21,,"Pacient interesat de consultații cardiologice și prevenție cardiovasculară.",26
+4,31,,"Pacient interesat de fizioterapie și recuperare medicală post-traumatică.",39
+5,28,,"Pacient interesat de stomatologie generală și igienizare dentară.",1
+6,8,,"Pacient interesat de servicii de vaccinare conform schemei naționale.",5
+7,45,,"Pacient interesat de kinetoterapie pentru afecțiuni musculo-scheletale.",36
+8,48,,"Pacient interesat de consultații dermatologice și controale alunițe.",1
+9,29,,"Pacient interesat de psihoterapie și consiliere pentru gestionarea stresului.",7
+10,44,,"Pacient interesat de consultații neurologice pentru migrene cronice.",13
+11,25,,"Pacient interesat de asistență medicală la domiciliu pentru un membru al familiei vârstnic.",11
+12,13,,"Pacient interesat de consultații ginecologice de rutină și screening (test PAP).",3
+14,19,,"Pacient interesat de consultații oftalmologice și prescripție ochelari.",3
+15,7,,"Pacient interesat de consultații ORL pentru afecțiuni recurente ale gâtului.",39
+16,36,,"Pacient interesat de logopedie pentru copilul său.",13
+17,6,,"Pacient interesat de nutriție clinică și plan dietetic personalizat.",3
+18,20,,"Pacient interesat de recoltare analize la domiciliu.",13
+19,33,,"Pacient interesat de consultații ortopedice pentru o problemă la genunchi.",13
+20,14,,"Pacient interesat de fizioterapie și recuperare după o entorsă.",3
+22,39,,"Pacient interesat de consultații de medicină generală și recomandări pentru analize.",39
+23,16,,"Pacient interesat de kinetoterapie pediatrică pentru copilul său.",12
+25,49,,"Pacient interesat de consultații cardiologice și monitorizare tensiune arterială.",1
+28,15,,"Pacient interesat de psihoterapie pentru anxietate și depresie.",7
+29,32,,"Pacient interesat de stomatologie generală și controale dentare anuale.",5
+30,30,,"Pacient interesat de servicii de vaccinare antigripală.",1
+33,22,,"Pacient interesat de consultații dermatologice pentru acnee.",14
+37,5,,"Pacient interesat de asistență medicală la domiciliu pentru părinții vârstnici.",36
+39,46,,"Pacient interesat de recuperare medicală post-operatorie.",4
+41,26,,"Pacient interesat de consiliere psihologică și suport emoțional.",4
+47,23,,"Pacient interesat de igienizare dentară periodică (detartraj).",11
