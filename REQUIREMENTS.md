@@ -531,5 +531,131 @@ Stakeholders should answer these incrementally; decisions belong in this doc or 
 | 1.2 | Login identifiers (email/phone/CNP), dual 2FA flows, frontend integration guide |
 | 1.3 | Marketplace pitch, phased backlog (provider-first MVP), tier checklists, open questions |
 | 1.3.1 | Domicile address visibility (providers only, booking-scoped); customer data isolation |
+| 1.4 | Provider profile privacy, approximate geo for providers, Leaflet.js map view, booking flow fix, km approximation algorithm |
 
 For request/response shapes and try-it-out calls, use the backend **Swagger** documentation in deployed or local environments (`auth`, `2FA-auth`, `core` tags).
+
+---
+
+## 11. New feature specifications (v1.4)
+
+### 11.1 Provider public profile — customer view
+
+Customers may view a provider's public profile via `GET /api/marketplace/providers/{id}/`. The response must include **only** the following fields:
+
+| Field | Source |
+|-------|--------|
+| `display_name` | `ProviderProfile` |
+| `bio` | `ProviderProfile` |
+| `service_area_city`, `service_area_country` | `GeoLocation` — city and country **only**; no raw lat/lng |
+| `travel_radius_km` | `ProviderProfile` |
+| `languages` | User language M2M |
+| `services` | `ServiceProvider` links with `provider_price` and `duration_minutes` |
+| `is_active` | `ProviderProfile` |
+| `aggregate_review_score` | Computed from `ProviderReview` rows |
+
+**Fields that must never appear in this response:** `email`, `phone_number`, `birth_date`, `social_security_number` / CNP, raw `latitude` / `longitude` of the service area, any other field from `accounts_user` beyond `display_name`.
+
+The backend serializer for this endpoint must use an **explicit field whitelist** — no passthrough of the full user or geo object.
+
+---
+
+### 11.2 Provider sees approximate customer location
+
+A provider may retrieve an approximated location for any registered customer. This allows proximity awareness before and during booking without exposing a precise home address.
+
+**Endpoint:** `GET /api/provider/customers/{customer_id}/location/`
+
+**Response shape:**
+```json
+{
+  "approx_lat": 46.77,
+  "approx_lng": 23.59,
+  "radius_m": 1000
+}
+```
+
+**Approximation rule:** round the stored `latitude` and `longitude` each to **2 decimal places** before returning them. At Romanian latitudes (~45–48° N) this produces a grid cell of roughly 1.1 km N-S and 0.8 km E-W. The `radius_m: 1000` field communicates this uncertainty to the client.
+
+**Access control:** only callers with `role = provider` may call this endpoint. Customers cannot call it. The `owner_user` constraint on `core_geolocation` still applies — providers cannot query arbitrary geo rows directly through other endpoints.
+
+Exact coordinates are **never** returned to a provider. Distance calculations for travel-radius validation (booking service, discovery filter) continue to use exact stored values internally.
+
+---
+
+### 11.3 Leaflet.js interactive map view
+
+A dedicated `/map` route is added to the frontend. This route replaces the current list-only provider discovery page; the nav link is updated accordingly (label: "Discover" / "Descoperă"). Both roles land on `/map` as their discovery entry point, but see different content.
+
+#### Customer view
+- A marker is placed at each active provider's public `service_area` location (city-level centroid).
+- A translucent circle of radius = `travel_radius_km` km is drawn around each marker, showing where the provider will travel.
+- Clicking a marker opens a provider card: `display_name`, offered services with prices, next available slot, and distance from the customer's home location.
+- Providers with no published open slots in the next 30 days are shown in a muted style but remain on the map.
+
+#### Provider view
+- Approximate customer locations (`approx_lat`, `approx_lng`) are fetched via `GET /api/provider/customers/` (list variant, returns snapped coordinates for all registered customers).
+- Nearby points are grouped into cluster markers using `react-leaflet-cluster`.
+- Clicking a cluster expands it or, when the cluster contains points that are very close together, opens a side panel listing the bookings linked to customers in that cluster: service name, scheduled date, and the customer's **first name only** — no surname, no address string, no exact coordinates.
+- Each individual customer marker has a 1 000 m radius circle to visually communicate the approximation. Exact address strings and exact coordinates are never rendered in any tooltip, popup, or panel.
+
+#### Technical requirements
+| Concern | Decision |
+|---------|---------|
+| Map library | `react-leaflet` + `leaflet` |
+| Clustering | `react-leaflet-cluster` |
+| Tile provider | OpenStreetMap (no API key required) |
+| Marker icons | Distinct icons per role view; circle overlays via `react-leaflet` `Circle` component |
+| Privacy | Exact customer lat/lng never sent to frontend; map uses snapped coordinates + radius circle |
+
+---
+
+### 11.4 Booking flow — fix 404 and wire frontend
+
+The customer booking flow returns a 404 somewhere between provider discovery and booking confirmation. The fix covers both backend routing and frontend wiring.
+
+#### Backend audit checklist
+1. Verify `POST /api/customer/bookings/` is registered in `backend/core/urls_marketplace.py` with the correct prefix and trailing slash.
+2. Verify `GET /api/marketplace/providers/{id}/slots/` is registered and returns only `status = open` slots for the given provider.
+3. Confirm the `IsCustomer` permission class is applied to booking creation and does not collide with any unauthenticated route that shadows the path.
+4. Confirm Django's `APPEND_SLASH` setting or DRF router configuration is consistent with how the frontend constructs URLs.
+
+#### Frontend wiring checklist
+1. Replace any remaining mock data calls in `routes/providers/$id.tsx` with live calls to `GET /api/marketplace/providers/{id}/` and `GET /api/marketplace/providers/{id}/slots/`.
+2. Add a slot-picker component on the provider detail page: fetches open slots, renders them as selectable time blocks, and passes the chosen `provider_availability_id` to the booking confirmation step.
+3. Replace mock data in `routes/bookings/new.tsx` with a live `POST /api/customer/bookings/` call using `{ provider_id, service_id, provider_availability_id, notes? }`.
+4. On success, redirect to `/bookings` and invalidate the booking list query cache.
+5. Surface API error messages (slot no longer available, customer outside travel radius, home location not set) with user-readable copy.
+
+#### Booking status flow (unchanged)
+```
+pending → confirmed (provider) → completed (provider)
+        ↘ declined (provider)
+pending / confirmed → cancelled (customer)
+```
+
+---
+
+### 11.5 KM range approximation algorithm
+
+This section formally specifies the coordinate-snapping algorithm used in §11.2 and §11.3 so that backend and frontend implementations stay consistent.
+
+**Algorithm:**
+```
+approx_lat = round(exact_lat, 2)   # grid cell ≈ 1.11 km N-S
+approx_lng = round(exact_lng, 2)   # grid cell ≈ 0.8 km E-W at 45° N
+```
+
+At Romanian latitudes the maximum positional error introduced by this rounding is the half-diagonal of the grid cell, approximately **0.7 km**. The `radius_m: 1000` value returned by the API is a conservative bound that covers this error.
+
+**Where the approximation is applied:**
+
+| Layer | Behaviour |
+|-------|-----------|
+| Database (`core_geolocation`) | Stores exact `latitude` / `longitude` — never modified |
+| Backend business logic (`geo_utils.py` haversine) | Always uses exact stored values for travel-radius checks and distance computations |
+| API serializer (provider-facing endpoints) | Rounds to 2 decimal places before serialising; returns `radius_m: 1000` |
+| Frontend map (`/map` route, provider view) | Places marker at `approx_lat` / `approx_lng`; draws a `Circle` of radius 1 000 m |
+| Frontend map (any tooltip or popup) | Displays **no coordinate strings** — shows area label (city) or booking context only |
+
+Approximation is a **display-only privacy measure**. It must not affect availability filtering, travel-radius validation, invoice distance fields, or any other business calculation.

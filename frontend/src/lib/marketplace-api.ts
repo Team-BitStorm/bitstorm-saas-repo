@@ -76,16 +76,47 @@ export type AvailabilitySlot = {
   status: "open" | "booked" | "blocked" | "cancelled";
 };
 
+/**
+ * Provider service-area location — a public business centroid.
+ * Coordinates are intentionally included; this is NOT a customer domicile.
+ * Customer home addresses are protected separately (owner_user checks, §11.1).
+ */
+export type PublicGeoLocation = {
+  id?: number;
+  city?: string;
+  region?: string;
+  country?: string;
+  latitude?: string | number | null;
+  longitude?: string | number | null;
+};
+
 export type MarketplaceProvider = {
   id: number;
   display_name: string;
   bio: string;
-  service_area: GeoLocation | null;
+  service_area: PublicGeoLocation | null;
   travel_radius_km: number | null;
   is_active: boolean;
   languages: Language[];
   offerings: ServiceOffering[];
   distance_km: string | null;
+};
+
+/** Approximate customer location returned to provider callers (§11.2) */
+export type ApproxCustomerLocation = {
+  customer_id: number;
+  approx_lat: number;
+  approx_lng: number;
+  radius_m: number;
+};
+
+export type ApproxCustomerListItem = {
+  customer_id: number;
+  first_name: string;
+  approx_lat: number;
+  approx_lng: number;
+  radius_m: number;
+  booking_count: number;
 };
 
 export type MarketplaceSlot = {
@@ -374,6 +405,18 @@ export async function customerReviewBooking(
     method: "POST",
     body: JSON.stringify({ rating, comment }),
   });
+}
+
+export async function fetchCustomerApproxLocation(
+  customerId: number,
+): Promise<ApproxCustomerLocation> {
+  return apiFetch<ApproxCustomerLocation>(
+    `/api/provider/customers/${customerId}/location/`,
+  );
+}
+
+export async function fetchAllCustomerApproxLocations(): Promise<ApproxCustomerListItem[]> {
+  return apiFetch<ApproxCustomerListItem[]>("/api/provider/customers/");
 }
 
 export function isProfileComplete(

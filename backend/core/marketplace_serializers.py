@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+from django.db.models import Min
 from rest_framework import serializers
 
 from .models import (
@@ -17,6 +18,19 @@ from .models import (
     UserReview,
 )
 from .serializers import GeoLocationSerializer, LanguageSerializer, ServiceSerializer
+
+
+def _canonical_services(active_only: bool = True):
+    """Deduplicated service queryset: one row per unique name (lowest PK wins)."""
+    qs = Service.objects.filter(
+        id__in=Service.objects.values("name")
+        .annotate(min_id=Min("id"))
+        .values("min_id")
+    )
+    if active_only:
+        qs = qs.filter(is_active=True)
+    return qs.order_by("name")
+
 
 User = get_user_model()
 
@@ -38,7 +52,15 @@ class GeoLocationWriteSerializer(serializers.ModelSerializer):
 
 
 class GeoLocationPublicSerializer(serializers.ModelSerializer):
-    """Service area / listing — no private domicile fields beyond city-level if needed."""
+    """
+    Provider service-area location for public marketplace views.
+    Exposes coordinates because the service area is a deliberate public
+    business centroid (not a personal domicile).  Customer home addresses
+    are protected separately via owner_user checks and are never served
+    through this serializer.  Per §11.1 the personal account fields
+    (email, phone, birth_date, CNP) are hidden at the User level; the
+    provider's business coordinates are intentionally public.
+    """
 
     class Meta:
         model = GeoLocation
@@ -84,7 +106,7 @@ class ProviderProfileWriteSerializer(serializers.ModelSerializer):
 class ServiceOfferingSerializer(serializers.ModelSerializer):
     service = ServiceSerializer(read_only=True)
     service_id = serializers.PrimaryKeyRelatedField(
-        queryset=Service.objects.filter(is_active=True),
+        queryset=_canonical_services(),
         source="service",
         write_only=True,
     )
@@ -124,7 +146,7 @@ class AvailabilityRuleSerializer(serializers.ModelSerializer):
 class AvailabilitySlotSerializer(serializers.ModelSerializer):
     service = ServiceSerializer(read_only=True)
     service_id = serializers.PrimaryKeyRelatedField(
-        queryset=Service.objects.filter(is_active=True),
+        queryset=_canonical_services(),
         source="service",
         write_only=True,
         required=False,
@@ -250,7 +272,7 @@ class BookingCreateSerializer(serializers.Serializer):
         source="provider",
     )
     service_id = serializers.PrimaryKeyRelatedField(
-        queryset=Service.objects.filter(is_active=True),
+        queryset=_canonical_services(),
         source="service",
     )
     provider_availability_id = serializers.PrimaryKeyRelatedField(
@@ -362,6 +384,33 @@ class MarketplaceSlotSerializer(serializers.ModelSerializer):
     class Meta:
         model = AvailabilityProvider
         fields = ("id", "service", "starts_at", "ends_at", "status")
+
+
+class ApproxCustomerLocationSerializer(serializers.Serializer):
+    """
+    Single customer approximate location returned to provider callers.
+    Coordinates are rounded to 2 decimal places (~1 km grid cell).
+    """
+
+    customer_id = serializers.IntegerField()
+    approx_lat = serializers.FloatField()
+    approx_lng = serializers.FloatField()
+    radius_m = serializers.IntegerField()
+
+
+class ApproxCustomerListItemSerializer(serializers.Serializer):
+    """
+    One entry in the provider's customer-location list used by the map view.
+    Includes minimal booking context; never exposes full name, address string,
+    or exact coordinates.
+    """
+
+    customer_id = serializers.IntegerField()
+    first_name = serializers.CharField()
+    approx_lat = serializers.FloatField()
+    approx_lng = serializers.FloatField()
+    radius_m = serializers.IntegerField()
+    booking_count = serializers.IntegerField()
 
 
 class BookingUserReviewSerializer(serializers.ModelSerializer):

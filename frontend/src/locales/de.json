@@ -5,6 +5,7 @@
   },
   "nav": {
     "discover": "Versorgung finden",
+    "map": "Karte",
     "myBookings": "Meine Termine",
     "profile": "Profil",
     "providerHome": "Dashboard",
@@ -117,7 +118,20 @@
     "openSlots": "Freie Termine",
     "noSlots": "Derzeit keine freien Termine.",
     "anyService": "Allgemeiner Besuch",
-    "bookSlot": "Diesen Termin buchen"
+    "bookSlot": "Diesen Termin buchen",
+    "selectService": "Welche Leistung benötigen Sie?",
+    "chooseService": "Leistung wählen…"
+  },
+  "map": {
+    "customerTitle": "Anbieter in Ihrer Nähe entdecken",
+    "customerSubtitle": "Jeder Kreis zeigt, wie weit ein Anbieter reist. Klicken Sie auf einen Marker für Details.",
+    "providerTitle": "Kundenkarte",
+    "providerSubtitle": "Ungefähre Standorte der Kunden. Genaue Adressen werden nie angezeigt.",
+    "noHomeLocation": "Hinterlegen Sie Ihre Heimadresse im Profil, um die Karte zu zentrieren.",
+    "noCustomers": "Noch keine Kunden mit gesetztem Standort.",
+    "travelRadius": "Reiseradius: {{km}} km",
+    "bookings": "{{count}} Buchung(en)",
+    "approxNote": "Ungefährer Standort (±1 km)"
   },
   "customer": {
     "onboardingTitle": "Ihr Profil",

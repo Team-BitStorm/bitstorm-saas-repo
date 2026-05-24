@@ -4,6 +4,7 @@ import { RouterProvider } from "@tanstack/react-router";
 
 import { router } from "./router";
 import "./styles.css";
+import "leaflet/dist/leaflet.css";
 import "@/lib/i18n";
 
 const rootElement = document.getElementById("root");

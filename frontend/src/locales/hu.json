@@ -5,6 +5,7 @@
   },
   "nav": {
     "discover": "Ellátás keresése",
+    "map": "Térkép",
     "myBookings": "Foglalásaim",
     "profile": "Profil",
     "providerHome": "Irányítópult",
@@ -117,7 +118,20 @@
     "openSlots": "Szabad időpontok",
     "noSlots": "Jelenleg nincs szabad időpont.",
     "anyService": "Általános látogatás",
-    "bookSlot": "Időpont foglalása"
+    "bookSlot": "Időpont foglalása",
+    "selectService": "Melyik szolgáltatásra van szüksége?",
+    "chooseService": "Válasszon szolgáltatást…"
+  },
+  "map": {
+    "customerTitle": "Fedezze fel a közeli szolgáltatókat",
+    "customerSubtitle": "Minden kör megmutatja, mennyire hajlandó utazni a szolgáltató.",
+    "providerTitle": "Ügyféltérkép",
+    "providerSubtitle": "Ügyfelek hozzávetőleges helye. A pontos címek soha nem jelennek meg.",
+    "noHomeLocation": "Állítsa be otthoni címét a profilban a térkép középre állításához.",
+    "noCustomers": "Még nincs beállított hellyel rendelkező ügyfél.",
+    "travelRadius": "Utazási sugár: {{km}} km",
+    "bookings": "{{count}} foglalás",
+    "approxNote": "Hozzávetőleges helyszín (±1 km)"
   },
   "customer": {
     "onboardingTitle": "Az Ön profilja",
