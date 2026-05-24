@@ -52,6 +52,16 @@ router.register(
 
 urlpatterns = [
     path(
+        "provider/customers/",
+        views.ProviderCustomerListView.as_view(),
+        name="provider-customer-list",
+    ),
+    path(
+        "provider/customers/<int:customer_id>/location/",
+        views.ProviderCustomerLocationView.as_view(),
+        name="provider-customer-location",
+    ),
+    path(
         "me/customer-profile/",
         views.MeCustomerProfileView.as_view(),
         name="me-customer-profile",

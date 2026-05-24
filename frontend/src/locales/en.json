@@ -5,6 +5,7 @@
   },
   "nav": {
     "discover": "Find care",
+    "map": "Map",
     "myBookings": "My bookings",
     "profile": "Profile",
     "providerHome": "Dashboard",
@@ -117,7 +118,20 @@
     "openSlots": "Open time slots",
     "noSlots": "No open slots right now.",
     "anyService": "General visit",
-    "bookSlot": "Book this slot"
+    "bookSlot": "Book this slot",
+    "selectService": "Which service do you need?",
+    "chooseService": "Choose a service…"
+  },
+  "map": {
+    "customerTitle": "Discover providers near you",
+    "customerSubtitle": "Each circle shows how far a provider is willing to travel. Click a marker to see their services.",
+    "providerTitle": "Customer map",
+    "providerSubtitle": "Approximate locations of customers. Exact addresses are never shown.",
+    "noHomeLocation": "Set your home address in your profile to centre the map on your location.",
+    "noCustomers": "No customers with a set location yet.",
+    "travelRadius": "Travel radius: {{km}} km",
+    "bookings": "{{count}} booking(s)",
+    "approxNote": "Location approximate (±1 km)"
   },
   "customer": {
     "onboardingTitle": "Your profile",

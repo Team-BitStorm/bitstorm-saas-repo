@@ -33,3 +33,15 @@ def location_has_coordinates(location) -> bool:
         and location.latitude is not None
         and location.longitude is not None
     )
+
+
+def approx_coordinates(
+    lat: Decimal | float,
+    lng: Decimal | float,
+) -> tuple[float, float]:
+    """
+    Round lat/lng to 2 decimal places (~1 km grid cell at Romanian latitudes).
+    Used for privacy: providers see approximate customer location only.
+    Business logic (haversine, radius checks) must always use exact values.
+    """
+    return round(float(lat), 2), round(float(lng), 2)

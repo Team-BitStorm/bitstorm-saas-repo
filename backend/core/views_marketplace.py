@@ -13,8 +13,10 @@ from .booking_service import (
     pay_invoice,
     transition_booking,
 )
-from .geo_utils import haversine_km, location_has_coordinates
+from .geo_utils import approx_coordinates, haversine_km, location_has_coordinates
 from .marketplace_serializers import (
+    ApproxCustomerListItemSerializer,
+    ApproxCustomerLocationSerializer,
     AvailabilityRuleSerializer,
     AvailabilitySlotBlockSerializer,
     AvailabilitySlotSerializer,
@@ -642,6 +644,89 @@ class MarketplaceProviderViewSet(viewsets.ReadOnlyModelViewSet):
         if service:
             qs = qs.filter(service__slug=service)
         return Response(MarketplaceSlotSerializer(qs, many=True).data)
+
+
+@provider_schema(summary="Approximate location for a single customer (§11.2)")
+class ProviderCustomerLocationView(APIView):
+    """
+    Returns a ~1 km-grid-snapped location for a customer's home address.
+    Only accessible to provider-role callers.
+    Exact coordinates are never returned — see geo_utils.approx_coordinates.
+    """
+
+    permission_classes = [IsAuthenticated, IsProvider]
+
+    @extend_schema(responses={200: ApproxCustomerLocationSerializer})
+    def get(self, request, customer_id):
+        customer = User.objects.filter(pk=customer_id, role=User.Role.CUSTOMER).first()
+        if customer is None:
+            return Response(
+                {"detail": "Customer not found."}, status=status.HTTP_404_NOT_FOUND
+            )
+        profile = getattr(customer, "profile", None)
+        if profile is None or not location_has_coordinates(profile.home_location):
+            return Response(
+                {"detail": "Customer location not available."},
+                status=status.HTTP_404_NOT_FOUND,
+            )
+        loc = profile.home_location
+        approx_lat, approx_lng = approx_coordinates(loc.latitude, loc.longitude)
+        return Response(
+            ApproxCustomerLocationSerializer(
+                {
+                    "customer_id": customer.pk,
+                    "approx_lat": approx_lat,
+                    "approx_lng": approx_lng,
+                    "radius_m": 1000,
+                }
+            ).data
+        )
+
+
+@provider_schema(summary="All customer approximate locations for map view (§11.3)")
+class ProviderCustomerListView(generics.ListAPIView):
+    """
+    Returns approximate locations for all registered customers who have a
+    home location set. Used exclusively by the provider-role map view.
+    Coordinates are rounded to 2 decimal places (~1 km grid cell).
+    """
+
+    permission_classes = [IsAuthenticated, IsProvider]
+    serializer_class = ApproxCustomerListItemSerializer
+
+    def list(self, request, *args, **kwargs):
+        from django.db.models import Count
+
+        customers = (
+            User.objects.filter(role=User.Role.CUSTOMER)
+            .select_related("profile__home_location")
+            .annotate(
+                booking_count=Count(
+                    "bookings_as_customer",
+                    distinct=True,
+                )
+            )
+        )
+        results = []
+        for customer in customers:
+            profile = getattr(customer, "profile", None)
+            if profile is None or not location_has_coordinates(
+                getattr(profile, "home_location", None)
+            ):
+                continue
+            loc = profile.home_location
+            approx_lat, approx_lng = approx_coordinates(loc.latitude, loc.longitude)
+            results.append(
+                {
+                    "customer_id": customer.pk,
+                    "first_name": customer.first_name or "Customer",
+                    "approx_lat": approx_lat,
+                    "approx_lng": approx_lng,
+                    "radius_m": 1000,
+                    "booking_count": customer.booking_count,
+                }
+            )
+        return Response(ApproxCustomerListItemSerializer(results, many=True).data)
 
 
 @customer_schema(summary="List my payments")

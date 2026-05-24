@@ -1,3 +1,4 @@
+from django.db.models import Min
 from rest_framework import viewsets
 
 from .models import (
@@ -21,6 +22,12 @@ from .serializers import (
     UserProfileSerializer,
     UserReviewSerializer,
 )
+
+
+def canonical_service_ids():
+    """Return IDs of the first-created (lowest PK) service per unique name.
+    Eliminates seed-data duplicates without requiring a migration."""
+    return Service.objects.values("name").annotate(min_id=Min("id")).values("min_id")
 
 
 @core_read_only_viewset
@@ -53,7 +60,7 @@ class ProviderProfileViewSet(viewsets.ReadOnlyModelViewSet):
 
 @core_read_only_viewset
 class ServiceViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Service.objects.all()
+    queryset = Service.objects.filter(id__in=canonical_service_ids()).order_by("name")
     serializer_class = ServiceSerializer
     lookup_field = "slug"
     lookup_url_kwarg = "slug"

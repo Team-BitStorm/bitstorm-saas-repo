@@ -8,6 +8,7 @@ import {
   Clock,
   Search,
   BookOpen,
+  Map,
 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
@@ -32,6 +33,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
     user?.role === "provider"
       ? [
           { to: "/provider", label: t("nav.providerHome"), icon: Home },
+          { to: "/map", label: t("nav.map"), icon: Map },
           { to: "/provider/services", label: t("nav.services"), icon: Briefcase },
           { to: "/provider/schedule", label: t("nav.schedule"), icon: CalendarDays },
           { to: "/provider/bookings", label: t("nav.bookings"), icon: Clock },
@@ -39,6 +41,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         ]
       : [
           { to: "/", label: t("nav.discover"), icon: Search },
+          { to: "/map", label: t("nav.map"), icon: Map },
           { to: "/bookings", label: t("nav.myBookings"), icon: BookOpen },
           { to: "/profile", label: t("nav.profile"), icon: User },
         ];

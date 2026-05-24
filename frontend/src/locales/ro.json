@@ -5,6 +5,7 @@
   },
   "nav": {
     "discover": "Găsește",
+    "map": "Hartă",
     "myBookings": "Programări",
     "profile": "Profil",
     "providerHome": "Panou",
@@ -117,7 +118,20 @@
     "openSlots": "Intervale disponibile",
     "noSlots": "Nu există intervale disponibile.",
     "anyService": "Vizită generală",
-    "bookSlot": "Rezervă acest interval"
+    "bookSlot": "Rezervă acest interval",
+    "selectService": "Ce serviciu ai nevoie?",
+    "chooseService": "Alege un serviciu…"
+  },
+  "map": {
+    "customerTitle": "Descoperă furnizori aproape de tine",
+    "customerSubtitle": "Fiecare cerc arată cât de departe călătorește furnizorul. Apasă pe un marcator pentru detalii.",
+    "providerTitle": "Harta clienților",
+    "providerSubtitle": "Locații aproximative ale clienților. Adresele exacte nu sunt niciodată afișate.",
+    "noHomeLocation": "Setează adresa de acasă în profil pentru a centra harta pe locația ta.",
+    "noCustomers": "Niciun client cu locație setată.",
+    "travelRadius": "Rază de deplasare: {{km}} km",
+    "bookings": "{{count}} programare(i)",
+    "approxNote": "Locație aproximativă (±1 km)"
   },
   "customer": {
     "onboardingTitle": "Profilul tău",
