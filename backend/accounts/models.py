@@ -69,5 +69,11 @@ class User(AbstractUser):
             self.cnp_lookup_hash = ""
         super().save(*args, **kwargs)
 
+    def delete(self, *args, **kwargs):
+        from .user_cleanup import cleanup_user_before_delete
+
+        cleanup_user_before_delete(self)
+        return super().delete(*args, **kwargs)
+
     def __str__(self) -> str:
         return self.email

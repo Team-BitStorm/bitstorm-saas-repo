@@ -3,17 +3,29 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CarePath — Accessible patient care</title>
+    <title>BitHealth — Home medical visits marketplace</title>
     <meta
       name="description"
-      content="Accessible medical facilitation app for patients with cognitive, motor, or visual needs."
+      content="Discover therapists and medical providers for home visits. Accessible, multi-language marketplace."
     />
-    <meta name="author" content="CarePath" />
-    <meta property="og:title" content="CarePath — Accessible patient care" />
+    <meta name="author" content="BitHealth" />
+    <meta property="og:title" content="BitHealth — Home medical visits marketplace" />
     <meta
       property="og:description"
-      content="Calm, clear care management for patients and caregivers."
+      content="Book home visits with trusted medical providers near you."
     />
+    <script>
+      (function () {
+        var key = "bithealth_theme";
+        var stored = localStorage.getItem(key);
+        var mode = stored === "light" || stored === "dark" || stored === "system" ? stored : "system";
+        var dark =
+          mode === "dark" ||
+          (mode === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches);
+        if (dark) document.documentElement.classList.add("dark");
+        document.documentElement.style.colorScheme = dark ? "dark" : "light";
+      })();
+    </script>
     <meta property="og:type" content="website" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

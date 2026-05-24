@@ -4,10 +4,15 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useRouterState,
 } from "@tanstack/react-router";
 
+import { AuthGate } from "@/components/auth/AuthGate";
 import { AppShell } from "@/components/layout/AppShell";
-import { PatientProvider } from "@/lib/patient-context";
+import { isAuthPublicPath } from "@/lib/auth";
+import { AccessibilityProvider } from "@/lib/accessibility-context";
+import { AuthProvider } from "@/lib/auth-context";
+import { ThemeProvider } from "@/lib/theme-context";
 
 function NotFoundComponent() {
   return (
@@ -73,17 +78,36 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   return (
     <QueryClientProvider client={queryClient}>
-      <PatientProvider>
-        <a
-          href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:rounded-full focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground"
-        >
-          Skip to content
-        </a>
-        <AppShell>
-          <Outlet />
-        </AppShell>
-      </PatientProvider>
+      <ThemeProvider>
+        <AccessibilityProvider>
+          <AuthProvider>
+            <AuthGate>
+              <RootShell />
+            </AuthGate>
+          </AuthProvider>
+        </AccessibilityProvider>
+      </ThemeProvider>
     </QueryClientProvider>
+  );
+}
+
+function RootShell() {
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const outlet = <Outlet />;
+
+  if (isAuthPublicPath(pathname)) {
+    return outlet;
+  }
+
+  return (
+    <>
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:rounded-full focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground"
+      >
+        Skip to content
+      </a>
+      <AppShell>{outlet}</AppShell>
+    </>
   );
 }

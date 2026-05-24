@@ -12,8 +12,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { VoiceInputButton } from "@/components/accessibility/VoiceInputButton";
 import { ApiError } from "@/lib/api";
-import { register, type UserRole } from "@/lib/auth";
+import { getRoleHome, register, type UserRole } from "@/lib/auth";
 import { useAuth } from "@/lib/auth-context";
 
 export function SignUpForm() {
@@ -53,7 +54,7 @@ export function SignUpForm() {
         role,
       });
       setUser(user);
-      await navigate({ to: "/" });
+      await navigate({ to: user.role === "customer" ? "/onboarding" : "/provider/onboarding" });
     } catch (err) {
       setError(err instanceof ApiError ? err.message : t("auth.errors.generic"));
     } finally {
@@ -77,14 +78,17 @@ export function SignUpForm() {
           <Label htmlFor="firstName" className="text-base">
             {t("auth.firstName")}
           </Label>
-          <Input
-            id="firstName"
-            autoComplete="given-name"
-            required
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
-            className="min-h-14 text-lg rounded-2xl"
-          />
+          <div className="flex gap-2">
+            <Input
+              id="firstName"
+              autoComplete="given-name"
+              required
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+              className="min-h-14 text-lg rounded-2xl flex-1"
+            />
+            <VoiceInputButton onTranscript={setFirstName} />
+          </div>
         </div>
         <div className="space-y-2">
           <Label htmlFor="lastName" className="text-base">
