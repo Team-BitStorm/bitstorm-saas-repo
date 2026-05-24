@@ -1,51 +1,51 @@
 id,name,slug,description,min_price,max_price,is_active,created_at,updated_at
-1,Masaj relaxant,masaj-relaxant-1,Serviciu profesional de masaj relaxant,254.86,254.86,True,2023-02-24 00:00:00,2023-02-24 00:00:00
-2,Manichiură,manichiur-2,Serviciu profesional de manichiură,225.24,225.24,True,2022-05-15 00:00:00,2022-05-15 00:00:00
-3,Pedichiură,pedichiur-3,Serviciu profesional de pedichiură,262.42,262.42,False,2023-10-09 00:00:00,2023-10-09 00:00:00
-4,Epilare ceară,epilare-cear-4,Serviciu profesional de epilare ceară,180.06,180.06,False,2023-01-13 00:00:00,2023-01-13 00:00:00
-5,Tratament facial,tratament-facial-5,Serviciu profesional de tratament facial,142.05,142.05,False,2022-07-09 00:00:00,2022-07-09 00:00:00
-6,Barbierit clasic,barbierit-clasic-6,Serviciu profesional de barbierit clasic,261.53,261.53,True,2022-07-16 00:00:00,2022-07-16 00:00:00
-7,Împletituri,mpletituri-7,Serviciu profesional de împletituri,380.25,380.25,True,2022-10-11 00:00:00,2022-10-11 00:00:00
-8,Vopsit păr,vopsit-p-r-8,Serviciu profesional de vopsit păr,207.89,207.89,True,2023-03-15 00:00:00,2023-03-15 00:00:00
-9,Extensii gene,extensii-gene-9,Serviciu profesional de extensii gene,396.67,396.67,False,2023-05-25 00:00:00,2023-05-25 00:00:00
-10,Microblading,microblading-10,Serviciu profesional de microblading,160.36,160.36,True,2022-10-09 00:00:00,2022-10-09 00:00:00
-11,Reflexoterapie,reflexoterapie-11,Serviciu profesional de reflexoterapie,281.75,281.75,False,2022-11-14 00:00:00,2022-11-14 00:00:00
-12,Yoga,yoga-12,Serviciu profesional de yoga,219.54,219.54,True,2023-04-05 00:00:00,2023-04-05 00:00:00
-13,Fitness personal,fitness-personal-13,Serviciu profesional de fitness personal,316.28,316.28,False,2023-12-29 00:00:00,2023-12-29 00:00:00
-14,Nutriție,nutri-ie-14,Serviciu profesional de nutriție,130.71,130.71,False,2022-06-14 00:00:00,2022-06-14 00:00:00
-15,Consultanță juridică,consultan-juridic-15,Serviciu profesional de consultanță juridică,481.92,481.92,False,2023-04-02 00:00:00,2023-04-02 00:00:00
-16,Contabilitate,contabilitate-16,Serviciu profesional de contabilitate,284.46,284.46,True,2022-07-13 00:00:00,2022-07-13 00:00:00
-17,Traduceri,traduceri-17,Serviciu profesional de traduceri,185.01,185.01,True,2022-09-12 00:00:00,2022-09-12 00:00:00
-18,Design grafic,design-grafic-18,Serviciu profesional de design grafic,343.64,343.64,False,2023-07-10 00:00:00,2023-07-10 00:00:00
-19,Fotografie,fotografie-19,Serviciu profesional de fotografie,390.6,390.6,True,2023-09-03 00:00:00,2023-09-03 00:00:00
-20,Tuns și coafat,tuns-i-coafat-20,Serviciu profesional de tuns și coafat,176.25,176.25,False,2023-12-02 00:00:00,2023-12-02 00:00:00
-21,Masaj relaxant,masaj-relaxant-21,Serviciu profesional de masaj relaxant,402.55,402.55,False,2023-03-21 00:00:00,2023-03-21 00:00:00
-22,Manichiură,manichiur-22,Serviciu profesional de manichiură,384.42,384.42,True,2023-04-25 00:00:00,2023-04-25 00:00:00
-23,Pedichiură,pedichiur-23,Serviciu profesional de pedichiură,288.27,288.27,True,2022-02-13 00:00:00,2022-02-13 00:00:00
-24,Epilare ceară,epilare-cear-24,Serviciu profesional de epilare ceară,332.67,332.67,True,2022-11-13 00:00:00,2022-11-13 00:00:00
-25,Tratament facial,tratament-facial-25,Serviciu profesional de tratament facial,422.93,422.93,False,2023-08-09 00:00:00,2023-08-09 00:00:00
-26,Barbierit clasic,barbierit-clasic-26,Serviciu profesional de barbierit clasic,483.7,483.7,False,2022-04-04 00:00:00,2022-04-04 00:00:00
-27,Împletituri,mpletituri-27,Serviciu profesional de împletituri,121.06,121.06,False,2022-03-01 00:00:00,2022-03-01 00:00:00
-28,Vopsit păr,vopsit-p-r-28,Serviciu profesional de vopsit păr,374.11,374.11,True,2022-03-03 00:00:00,2022-03-03 00:00:00
-29,Extensii gene,extensii-gene-29,Serviciu profesional de extensii gene,133.26,133.26,False,2022-05-15 00:00:00,2022-05-15 00:00:00
-30,Microblading,microblading-30,Serviciu profesional de microblading,116.55,116.55,False,2023-04-11 00:00:00,2023-04-11 00:00:00
-31,Reflexoterapie,reflexoterapie-31,Serviciu profesional de reflexoterapie,189.84,189.84,True,2022-01-02 00:00:00,2022-01-02 00:00:00
-32,Yoga,yoga-32,Serviciu profesional de yoga,59.12,59.12,True,2022-08-20 00:00:00,2022-08-20 00:00:00
-33,Fitness personal,fitness-personal-33,Serviciu profesional de fitness personal,57.83,57.83,True,2023-06-19 00:00:00,2023-06-19 00:00:00
-34,Nutriție,nutri-ie-34,Serviciu profesional de nutriție,176.16,176.16,True,2023-06-08 00:00:00,2023-06-08 00:00:00
-35,Consultanță juridică,consultan-juridic-35,Serviciu profesional de consultanță juridică,488.87,488.87,False,2023-08-09 00:00:00,2023-08-09 00:00:00
-36,Contabilitate,contabilitate-36,Serviciu profesional de contabilitate,156.34,156.34,False,2022-03-19 00:00:00,2022-03-19 00:00:00
-37,Traduceri,traduceri-37,Serviciu profesional de traduceri,390.15,390.15,False,2023-02-21 00:00:00,2023-02-21 00:00:00
-38,Design grafic,design-grafic-38,Serviciu profesional de design grafic,339.89,339.89,True,2023-02-04 00:00:00,2023-02-04 00:00:00
-39,Fotografie,fotografie-39,Serviciu profesional de fotografie,212.72,212.72,True,2022-05-11 00:00:00,2022-05-11 00:00:00
-40,Tuns și coafat,tuns-i-coafat-40,Serviciu profesional de tuns și coafat,373.04,373.04,False,2022-06-24 00:00:00,2022-06-24 00:00:00
-41,Masaj relaxant,masaj-relaxant-41,Serviciu profesional de masaj relaxant,210.81,210.81,False,2022-03-20 00:00:00,2022-03-20 00:00:00
-42,Manichiură,manichiur-42,Serviciu profesional de manichiură,146.68,146.68,False,2023-01-22 00:00:00,2023-01-22 00:00:00
-43,Pedichiură,pedichiur-43,Serviciu profesional de pedichiură,250.83,250.83,False,2022-10-09 00:00:00,2022-10-09 00:00:00
-44,Epilare ceară,epilare-cear-44,Serviciu profesional de epilare ceară,115.85,115.85,True,2023-05-26 00:00:00,2023-05-26 00:00:00
-45,Tratament facial,tratament-facial-45,Serviciu profesional de tratament facial,260.99,260.99,False,2022-04-14 00:00:00,2022-04-14 00:00:00
-46,Barbierit clasic,barbierit-clasic-46,Serviciu profesional de barbierit clasic,406.21,406.21,True,2022-12-04 00:00:00,2022-12-04 00:00:00
-47,Împletituri,mpletituri-47,Serviciu profesional de împletituri,209.77,209.77,True,2022-01-02 00:00:00,2022-01-02 00:00:00
-48,Vopsit păr,vopsit-p-r-48,Serviciu profesional de vopsit păr,114.42,114.42,False,2022-05-21 00:00:00,2022-05-21 00:00:00
-49,Extensii gene,extensii-gene-49,Serviciu profesional de extensii gene,412.73,412.73,True,2022-08-20 00:00:00,2022-08-20 00:00:00
-50,Microblading,microblading-50,Serviciu profesional de microblading,267.95,267.95,True,2022-05-24 00:00:00,2022-05-24 00:00:00
+1,Consultație medicină generală,consultatie-medicina-generala-1,"Consultație medicală pentru evaluarea stării generale de sănătate, diagnostic și plan de tratament.",150.00,250.00,True,2023-02-24 00:00:00,2023-02-24 00:00:00
+2,Consultație pediatrică,consultatie-pediatrica-2,"Consultație pediatrică pentru sugari, copii și adolescenți, cu examinare clinică completă.",180.00,280.00,True,2022-05-15 00:00:00,2022-05-15 00:00:00
+3,Vaccinare,vaccinare-3,"Administrare vaccinuri conform schemei naționale și recomandărilor medicale (gripă, hepatită, HPV etc.).",80.00,200.00,True,2023-10-09 00:00:00,2023-10-09 00:00:00
+4,Recoltări analize,recoltari-analize-4,"Recoltare probe biologice (sânge, urină) la cabinet sau la domiciliu pentru analize de laborator.",60.00,150.00,True,2023-01-13 00:00:00,2023-01-13 00:00:00
+5,Asistență medicală la domiciliu,asistenta-medicala-la-domiciliu-5,"Servicii de asistență medicală la domiciliu pentru pacienți cu mobilitate redusă, vârstnici sau în convalescență.",120.00,300.00,True,2022-07-09 00:00:00,2022-07-09 00:00:00
+6,Stomatologie generală,stomatologie-generala-6,"Consultație stomatologică, obturații, tratament carii, urgențe dentare.",200.00,500.00,True,2022-07-16 00:00:00,2022-07-16 00:00:00
+7,Igienizare dentară (detartraj),igienizare-dentara-detartraj-7,"Detartraj cu ultrasunete, periaj profesional și airflow pentru o igienă orală completă.",180.00,280.00,True,2022-10-11 00:00:00,2022-10-11 00:00:00
+8,Consultație cardiologie,consultatie-cardiologie-8,"Consultație cardiologică cu electrocardiogramă (EKG) și recomandări de tratament.",250.00,400.00,True,2023-03-15 00:00:00,2023-03-15 00:00:00
+9,Consultație dermatologie,consultatie-dermatologie-9,"Examinare dermatoscopică a alunițelor și diagnosticarea afecțiunilor pielii.",220.00,350.00,True,2023-05-25 00:00:00,2023-05-25 00:00:00
+10,Consultație ginecologie,consultatie-ginecologie-10,"Consult ginecologic complet cu test PAP și ecografie transvaginală la cerere.",230.00,380.00,True,2022-10-09 00:00:00,2022-10-09 00:00:00
+11,Fizioterapie,fizioterapie-11,"Ședințe de fizioterapie cu electrostimulare, ultrasunete și magnetoterapie.",100.00,200.00,True,2022-11-14 00:00:00,2022-11-14 00:00:00
+12,Kinetoterapie,kinetoterapie-12,"Recuperare prin mișcare pentru afecțiuni musculo-scheletale, post-traumatice sau neurologice.",120.00,220.00,True,2023-04-05 00:00:00,2023-04-05 00:00:00
+13,Recuperare medicală post-operatorie,recuperare-medicala-post-operatorie-13,"Program personalizat de recuperare după intervenții chirurgicale ortopedice sau cardiovasculare.",150.00,350.00,True,2023-12-29 00:00:00,2023-12-29 00:00:00
+14,Nutriție clinică,nutritie-clinica-14,"Consult nutrițional cu plan dietetic personalizat pentru diabet, obezitate sau alte afecțiuni.",180.00,300.00,True,2022-06-14 00:00:00,2022-06-14 00:00:00
+15,Consultație ortopedie,consultatie-ortopedie-15,"Examinare ortopedică, tratament conservator sau recomandare chirurgicală pentru afecțiuni osoase și articulare.",240.00,400.00,True,2023-04-02 00:00:00,2023-04-02 00:00:00
+16,Consultație neurologie,consultatie-neurologie-16,"Consult neurologic pentru migrene, vertij, epilepsie și alte afecțiuni ale sistemului nervos.",260.00,420.00,True,2022-07-13 00:00:00,2022-07-13 00:00:00
+17,Consultație ORL,consultatie-orl-17,"Examinare otorinolaringologică pentru afecțiunile urechii, nasului și gâtului.",200.00,330.00,True,2022-09-12 00:00:00,2022-09-12 00:00:00
+18,Consultație oftalmologie,consultatie-oftalmologie-18,"Examen oftalmologic complet, prescripție ochelari și screening pentru glaucom.",210.00,340.00,True,2023-07-10 00:00:00,2023-07-10 00:00:00
+19,Logopedie,logopedie-19,"Terapie logopedică pentru tulburări de vorbire, dislalie, balbism la copii și adulți.",150.00,250.00,True,2023-09-03 00:00:00,2023-09-03 00:00:00
+20,Psihoterapie / Consiliere psihologică,psihoterapie-consiliere-psihologica-20,"Ședințe de psihoterapie individuală pentru anxietate, depresie și gestionarea stresului.",200.00,350.00,True,2023-12-02 00:00:00,2023-12-02 00:00:00
+21,Ecografie abdominală,ecografie-abdominala-21,"Examinare ecografică abdominală pentru ficat, rinichi, pancreas, splină și vezică urinară.",180.00,280.00,True,2023-03-21 00:00:00,2023-03-21 00:00:00
+22,Ecografie tiroidă,ecografie-tiroida-22,"Examinare ecografică a glandei tiroide pentru depistarea nodulilor și afecțiunilor tiroidiene.",150.00,240.00,True,2023-04-25 00:00:00,2023-04-25 00:00:00
+23,Ecocardiografie,ecocardiografie-23,"Ecografie cardiacă pentru evaluarea structurii și funcției inimii.",250.00,400.00,True,2022-02-13 00:00:00,2022-02-13 00:00:00
+24,Electrocardiogramă (EKG),electrocardiograma-ekg-24,"Înregistrare EKG pentru evaluarea ritmului cardiac și diagnosticarea aritmiilor.",80.00,150.00,True,2022-11-13 00:00:00,2022-11-13 00:00:00
+25,Holter EKG 24h,holter-ekg-24h-25,"Monitorizare continuă a activității electrice a inimii timp de 24 de ore.",180.00,280.00,True,2023-08-09 00:00:00,2023-08-09 00:00:00
+26,Holter tensiune arterială 24h,holter-tensiune-arteriala-24h-26,"Monitorizare ambulatorie a tensiunii arteriale timp de 24 de ore.",160.00,260.00,True,2022-04-04 00:00:00,2022-04-04 00:00:00
+27,Spirometrie,spirometrie-27,"Test funcțional respirator pentru diagnosticarea astmului bronșic și BPOC.",120.00,200.00,True,2022-03-01 00:00:00,2022-03-01 00:00:00
+28,Audiometrie,audiometrie-28,"Test audiologic pentru evaluarea pragurilor auditive și diagnosticarea pierderilor de auz.",100.00,200.00,True,2022-03-03 00:00:00,2022-03-03 00:00:00
+29,Test PAP,test-pap-29,"Recoltare frotiu cervico-vaginal pentru screeningul cancerului de col uterin.",120.00,220.00,True,2022-05-15 00:00:00,2022-05-15 00:00:00
+30,Mamografie de screening,mamografie-screening-30,"Mamografie digitală pentru screeningul cancerului de sân.",220.00,360.00,True,2023-04-11 00:00:00,2023-04-11 00:00:00
+31,Acupunctură medicală,acupunctura-medicala-31,"Tratament prin acupunctură medicală pentru durere cronică, migrene și anxietate.",150.00,260.00,True,2022-01-02 00:00:00,2022-01-02 00:00:00
+32,Osteopatie medicală,osteopatie-medicala-32,"Manipulări osteopatice pentru afecțiuni musculo-scheletale și dureri lombare.",200.00,320.00,True,2022-08-20 00:00:00,2022-08-20 00:00:00
+33,Consultație endocrinologie,consultatie-endocrinologie-33,"Consult pentru afecțiuni ale glandelor endocrine: tiroidă, diabet zaharat, obezitate.",240.00,380.00,True,2023-06-19 00:00:00,2023-06-19 00:00:00
+34,Consultație gastroenterologie,consultatie-gastroenterologie-34,"Consult pentru afecțiuni digestive, reflux gastroesofagian, sindrom colon iritabil.",250.00,400.00,True,2023-06-08 00:00:00,2023-06-08 00:00:00
+35,Consultație urologie,consultatie-urologie-35,"Consult urologic pentru afecțiuni ale tractului urinar și prostatei.",240.00,380.00,True,2023-08-09 00:00:00,2023-08-09 00:00:00
+36,Consultație psihiatrie,consultatie-psihiatrie-36,"Evaluare psihiatrică pentru depresie, anxietate, tulburări bipolare și insomnie.",260.00,420.00,True,2022-03-19 00:00:00,2022-03-19 00:00:00
+37,Consultație medicină internă,consultatie-medicina-interna-37,"Consult de medicină internă pentru pacienți cu afecțiuni cronice complexe.",230.00,380.00,True,2023-02-21 00:00:00,2023-02-21 00:00:00
+38,Consultație alergologie,consultatie-alergologie-38,"Consult alergologic cu testare cutanată pentru alergeni respiratori și alimentari.",240.00,380.00,True,2023-02-04 00:00:00,2023-02-04 00:00:00
+39,Implant dentar,implant-dentar-39,"Inserare implant dentar din titan pentru reabilitare orală.",2000.00,4500.00,True,2022-05-11 00:00:00,2022-05-11 00:00:00
+40,Tratament endodontic (canal),tratament-endodontic-canal-40,"Tratament de canal pentru salvarea dintelui afectat de carie profundă sau infecție.",400.00,800.00,True,2022-06-24 00:00:00,2022-06-24 00:00:00
+41,Albire dentară medicală,albire-dentara-medicala-41,"Albire dentară profesională în cabinet, sub supraveghere medicală.",500.00,900.00,True,2022-03-20 00:00:00,2022-03-20 00:00:00
+42,Extracție dentară,extractie-dentara-42,"Extracție dentară simplă sau chirurgicală, inclusiv molari de minte.",250.00,600.00,True,2023-01-22 00:00:00,2023-01-22 00:00:00
+43,Vaccinare antigripală,vaccinare-antigripala-43,"Vaccinare antigripală sezonieră pentru toate categoriile de vârstă.",80.00,150.00,True,2022-10-09 00:00:00,2022-10-09 00:00:00
+44,Vaccinare HPV,vaccinare-hpv-44,"Vaccinare împotriva papilomavirusului uman pentru prevenția cancerului de col uterin.",350.00,700.00,True,2023-05-26 00:00:00,2023-05-26 00:00:00
+45,Administrare perfuzii la domiciliu,administrare-perfuzii-domiciliu-45,"Administrare perfuzii intravenoase la domiciliul pacientului, sub supraveghere medicală.",150.00,280.00,True,2022-04-14 00:00:00,2022-04-14 00:00:00
+46,Pansamente la domiciliu,pansamente-domiciliu-46,"Schimbare pansamente, îngrijire plăgi și escare la domiciliul pacientului.",100.00,200.00,True,2022-12-04 00:00:00,2022-12-04 00:00:00
+47,Îngrijiri paliative la domiciliu,ingrijiri-paliative-domiciliu-47,"Asistență paliativă la domiciliu pentru pacienți cu afecțiuni cronice avansate.",200.00,400.00,True,2022-01-02 00:00:00,2022-01-02 00:00:00
+48,Asistență medicală vârstnici,asistenta-medicala-varstnici-48,"Pachet de asistență medicală pentru persoane vârstnice cu mobilitate redusă.",180.00,350.00,True,2022-05-21 00:00:00,2022-05-21 00:00:00
+49,Consiliere lactație și alăptare,consiliere-lactatie-alaptare-49,"Suport specializat pentru mame în alăptare și nou-născuți, la cabinet sau la domiciliu.",150.00,250.00,True,2022-08-20 00:00:00,2022-08-20 00:00:00
+50,Consultație medicină sportivă,consultatie-medicina-sportiva-50,"Evaluare medicală pentru sportivi de performanță și amatori, cu test de efort.",220.00,360.00,True,2022-05-24 00:00:00,2022-05-24 00:00:00
