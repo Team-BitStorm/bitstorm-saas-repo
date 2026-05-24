@@ -91,6 +91,11 @@ export function isAuthPublicPath(pathname: string): boolean {
   return (AUTH_PUBLIC_PATHS as readonly string[]).includes(pathname);
 }
 
+/** Provider dashboard routes (/provider, /provider/schedule, …) — not marketplace /providers/:id */
+export function isProviderDashboardPath(pathname: string): boolean {
+  return pathname === "/provider" || pathname.startsWith("/provider/");
+}
+
 export function getStoredAccessToken(): string | null {
   if (!isBrowser()) return null;
   return localStorage.getItem(ACCESS_KEY);

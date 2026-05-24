@@ -41,6 +41,11 @@ function ProviderDetailPage() {
   return (
     <div className="space-y-8">
       {providerQuery.isLoading ? <p>{t("common.loading")}</p> : null}
+      {providerQuery.error ? (
+        <p role="alert" className="text-destructive">
+          {String(providerQuery.error)}
+        </p>
+      ) : null}
       {provider ? (
         <>
           <header>

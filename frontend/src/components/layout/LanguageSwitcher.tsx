@@ -8,10 +8,14 @@ import { cn } from "@/lib/utils";
 export function LanguageSwitcher({
   compact = false,
   menuPlacement = "bottom",
+  fullWidth = false,
+  className,
 }: {
   compact?: boolean;
   /** Use "top" when the trigger sits at the bottom of the viewport (sidebar). */
   menuPlacement?: "top" | "bottom";
+  fullWidth?: boolean;
+  className?: string;
 }) {
   const { t, i18n } = useTranslation();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
@@ -31,7 +35,7 @@ export function LanguageSwitcher({
   };
 
   return (
-    <div className="relative">
+    <div className={cn("relative", fullWidth && "w-full min-w-0", className)}>
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
@@ -41,13 +45,14 @@ export function LanguageSwitcher({
         className={cn(
           "inline-flex items-center gap-2 rounded-full border-2 border-input bg-card font-semibold",
           compact ? "min-h-12 px-3 text-sm" : "min-h-14 px-4 text-base",
+          fullWidth && "w-full min-w-0 justify-center",
         )}
       >
-        <Languages aria-hidden="true" className="size-5" />
-        <span aria-hidden="true" className="text-xl leading-none">
+        <Languages aria-hidden="true" className="size-5 shrink-0" />
+        <span aria-hidden="true" className="text-xl leading-none shrink-0">
           {current.flag}
         </span>
-        <span>{current.label}</span>
+        <span className={cn(fullWidth && "truncate")}>{current.label}</span>
       </button>
 
       {open ? (
@@ -63,7 +68,8 @@ export function LanguageSwitcher({
             role="listbox"
             aria-label={t("common.language")}
             className={cn(
-              "absolute left-0 z-50 min-w-56 rounded-2xl border-2 border-border bg-card p-2 shadow-xl",
+              "absolute z-50 rounded-2xl border-2 border-border bg-card p-2 shadow-xl",
+              fullWidth ? "inset-x-0 w-full" : "right-0 min-w-full w-max",
               menuPlacement === "top" ? "bottom-full mb-2" : "top-full mt-2",
             )}
           >
