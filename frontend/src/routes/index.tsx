@@ -19,10 +19,12 @@ export const Route = createFileRoute("/")({
   component: DiscoverPage,
 });
 
+const ALL_FILTER = "all";
+
 function DiscoverPage() {
   const { t } = useTranslation();
-  const [service, setService] = useState<string>("");
-  const [language, setLanguage] = useState<string>("");
+  const [service, setService] = useState<string>(ALL_FILTER);
+  const [language, setLanguage] = useState<string>(ALL_FILTER);
   const [lat, setLat] = useState("");
   const [lng, setLng] = useState("");
 
@@ -34,8 +36,8 @@ function DiscoverPage() {
     queryKey: ["providers", service, language, lat, lng],
     queryFn: () =>
       discoverProviders({
-        service: service || undefined,
-        language: language || undefined,
+        service: service === ALL_FILTER ? undefined : service,
+        language: language === ALL_FILTER ? undefined : language,
         lat: lat || undefined,
         lng: lng || undefined,
       }),
@@ -75,7 +77,7 @@ function DiscoverPage() {
                 <SelectValue placeholder={t("marketplace.allServices")} />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">{t("marketplace.allServices")}</SelectItem>
+                <SelectItem value={ALL_FILTER}>{t("marketplace.allServices")}</SelectItem>
                 {(servicesQuery.data ?? []).map((s) => (
                   <SelectItem key={s.id} value={s.slug}>
                     {s.name}
@@ -91,7 +93,7 @@ function DiscoverPage() {
                 <SelectValue placeholder={t("marketplace.allLanguages")} />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">{t("marketplace.allLanguages")}</SelectItem>
+                <SelectItem value={ALL_FILTER}>{t("marketplace.allLanguages")}</SelectItem>
                 {(languagesQuery.data ?? []).map((l) => (
                   <SelectItem key={l.id} value={l.code}>
                     {l.name}

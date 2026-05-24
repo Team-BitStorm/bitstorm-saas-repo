@@ -47,7 +47,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
     <div className="min-h-dvh bg-background text-foreground">
       <aside
         aria-label="Primary navigation"
-        className="hidden md:flex fixed inset-y-0 left-0 w-64 flex-col border-r bg-card px-4 py-6 gap-2"
+        className="hidden md:flex fixed inset-y-0 left-0 w-64 flex-col border-r bg-card px-4 py-6 gap-2 overflow-x-hidden"
       >
         <div className="px-2 pb-4">
           <p className="font-display text-2xl text-primary">{t("app.name")}</p>
@@ -76,12 +76,10 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             );
           })}
         </nav>
-        <div className="mt-auto pt-4 space-y-3">
+        <div className="mt-auto pt-4 space-y-3 min-w-0">
           <ReadAloudButton className="w-full min-h-12 rounded-full text-sm font-semibold border-2" />
-          <div className="flex items-center gap-2">
-            <AccessibilityToolbar />
-            <LanguageSwitcher menuPlacement="top" compact />
-          </div>
+          <AccessibilityToolbar />
+          <LanguageSwitcher menuPlacement="top" compact fullWidth />
         </div>
       </aside>
 

@@ -35,6 +35,10 @@
     "themeDark": "Mod întunecat"
   },
   "auth": {
+    "loginTitle": "Bine ai revenit",
+    "loginSubtitle": "Autentifică-te în contul tău BitHealth",
+    "signUpTitle": "Creează-ți contul",
+    "signUpSubtitle": "Alătură-te BitHealth pentru vizite medicale la domiciliu",
     "identifier": "Email, telefon sau CNP",
     "password": "Parolă",
     "email": "Email",

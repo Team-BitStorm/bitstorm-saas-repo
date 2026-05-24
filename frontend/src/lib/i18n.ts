@@ -21,6 +21,7 @@ if (!i18n.isInitialized) {
     .use(LanguageDetector)
     .use(initReactI18next)
     .init({
+      lng: "ro",
       resources: {
         ro: { translation: ro },
         en: { translation: en },
@@ -31,7 +32,7 @@ if (!i18n.isInitialized) {
       supportedLngs: ["ro", "en", "hu", "de"],
       interpolation: { escapeValue: false },
       detection: {
-        order: ["localStorage", "navigator"],
+        order: ["localStorage"],
         lookupLocalStorage: "bithealth-lang",
         caches: ["localStorage"],
       },

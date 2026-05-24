@@ -35,6 +35,10 @@
     "themeDark": "Switch to dark mode"
   },
   "auth": {
+    "loginTitle": "Welcome back",
+    "loginSubtitle": "Sign in to your BitHealth account",
+    "signUpTitle": "Create your account",
+    "signUpSubtitle": "Join BitHealth to book home medical visits",
     "identifier": "Email, phone, or CNP",
     "password": "Password",
     "email": "Email",

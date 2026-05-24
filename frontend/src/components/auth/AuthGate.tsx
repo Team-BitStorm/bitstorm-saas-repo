@@ -1,10 +1,9 @@
 import { useNavigate, useRouterState } from "@tanstack/react-router";
 import * as React from "react";
 
-import { getRoleHome, isAuthPublicPath } from "@/lib/auth";
+import { getRoleHome, isAuthPublicPath, isProviderDashboardPath } from "@/lib/auth";
 import { useAuth } from "@/lib/auth-context";
 
-const PROVIDER_PREFIX = "/provider";
 const CUSTOMER_ONBOARDING = "/onboarding";
 
 export function AuthGate({ children }: { children: React.ReactNode }) {
@@ -30,7 +29,7 @@ export function AuthGate({ children }: { children: React.ReactNode }) {
 
     if (!isAuthenticated || !user) return;
 
-    const isProviderRoute = pathname.startsWith(PROVIDER_PREFIX);
+    const isProviderRoute = isProviderDashboardPath(pathname);
     const isCustomerRoute =
       pathname === "/" ||
       pathname.startsWith("/bookings") ||
